@@ -14,13 +14,10 @@
 
         //grabs info and creates a "timer". Not actual timer yet.
         let userTime = document.getElementById("seconds").value;
-        const countdown = document.createElement("p");
-
-        countdown.innerText = userTime;
-
         const timer = document.querySelector(".timer");
 
-        timer.append(countdown);
+        timer.innerText = userTime;
+
 
         //Start button becomes a pause button
         let start = document.getElementById("start");
@@ -30,7 +27,7 @@
             start.innerText = "Pause";
             interval = setInterval(function () {
                 userTime--;
-                countdown.innerText = userTime;
+                timer.innerText = userTime;
             }, 1000);
         } else {
             start.innerText = "Start";
