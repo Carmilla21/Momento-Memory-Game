@@ -25,15 +25,22 @@
         let interval = -1; //indicates timer is paused
 
 
-        //maybe do an add classlist and remove classlist for start and pause. have only start in HTML to begin with
-        if (interval === -1) {
+        //The else statement isn't happening.
+        if (interval === -1) {//start is pressed, clock begins, start changes to pause.
+            console.log("started");
             start.innerText = "Pause";
+            start.classList.add("pause");
+            start.classList.remove("start");
             interval = setInterval(function () {
                 completeTime++;
                 timer.innerText = completeTime;
             }, 1000);
-        } else {
+
+        } else {//pause is pressed and the clock pauses button changes to start
+            console.log("should pause");
             start.innerText = "Start";
+            start.classList.add("start");
+            start.classList.remove("pause");
             clearInterval(interval);
             interval = -1;
         };
