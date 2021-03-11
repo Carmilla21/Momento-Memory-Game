@@ -20,6 +20,13 @@ body {
   height: calc(33.333% - 10px);
   margin: 5px;
   position: relative;
+  transform-style: preserve-3d;
+  transform: scale(1);
+}
+
+.card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
 }
 
 .front,
