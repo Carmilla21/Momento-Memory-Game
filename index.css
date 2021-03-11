@@ -14,12 +14,21 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
+  perspective: 1000px;
 }
 .card {
   width: calc(25% - 10px);
   height: calc(33.333% - 10px);
   margin: 5px;
   position: relative;
+  transform-style: preserve-3d;
+  transform: scale(1);
+  transition: transform 0.5s;
+}
+
+.card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
 }
 
 .front,
@@ -29,4 +38,13 @@ body {
   padding: 20px;
   position: absolute;
   border-radius: 5px;
+  backface-visibility: hidden;
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+.card.flip {
+  transform: rotateY(180deg);
 }
