@@ -4,8 +4,8 @@
 }
 
 body {
-  width: 100%;
   height: 100vh;
+  display: flex;
 }
 
 .game-container {
@@ -13,15 +13,20 @@ body {
   height: 640px;
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
 }
 .card {
-  width: calc(20%-10px);
+  width: calc(25% - 10px);
   height: calc(33.333% - 10px);
   margin: 5px;
   position: relative;
 }
 
-.fa-book-dead {
-  width: 30px;
-  height: 30px;
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
 }

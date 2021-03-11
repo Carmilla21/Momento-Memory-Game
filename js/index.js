@@ -12,22 +12,25 @@
 
         The start button can not reset the timer or cards.*/
 
-        //grabs info and creates a "timer". Not actual timer yet.
-        let userTime = document.getElementById("seconds").value;
+        //create a timer that counts up how long it took.
         const timer = document.querySelector(".timer");
+        let completeTime = 0;
 
-        timer.innerText = userTime;
+        timer.innerText = completeTime;
+
 
 
         //Start button becomes a pause button
         let start = document.getElementById("start");
         let interval = -1; //indicates timer is paused
 
+
+        //maybe do an add classlist and remove classlist for start and pause. have only start in HTML to begin with
         if (interval === -1) {
             start.innerText = "Pause";
             interval = setInterval(function () {
-                userTime--;
-                timer.innerText = userTime;
+                completeTime++;
+                timer.innerText = completeTime;
             }, 1000);
         } else {
             start.innerText = "Start";
