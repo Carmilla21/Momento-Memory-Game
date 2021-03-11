@@ -44,13 +44,46 @@
 
   const cards = document.querySelectorAll(".card");
 
+  let hasFlippedCard = false;
+  let firstCard, secondCard;
   /**
    * Function will add the flip class to element
    */
   function flipCard() {
-    this.classList.toggle("flip");
+    this.classList.add("flip");
+
+    if (!hasFlippedCard) {
+      hasFlippedCard = true;
+      firstCard = this;
+      return;
+    }
+
+    secondCard = this;
+    hasFlippedCard = false;
+
+    checkMatch();
   }
 
+  //Checks if two cards match
+  let matched =
+    firstCard.dataset.card - type === secondCard.dataset.card - type;
+  matched ? disablecards() : unflipCards();
+
+  //disables attemted cards till
+  function disablecards() {
+    firstCard.removeEventListener("click", flipCard);
+    secondCard.removeEventListener("click", flipCard);
+    firstCard.style.display = "none";
+    secondCard.style.display = "none";
+  }
+
+  //Unflips mismatched cards after 1.5sec
+  function unFlip() {
+    setTimeout(() => {
+      firstCard.classList.remove("flip");
+      secondCard.classList.remove("flip");
+    }, 1500);
+  }
   //Adds event listener to all cards to flip
   cards.forEach((card) => card.addEventListener("click", flipCard));
 })();
