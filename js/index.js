@@ -1,12 +1,16 @@
 (function () {
     document.getElementById("start").addEventListener("click", Start);
 
+    /*function for disable cards remove event listener on the 
+    card.addEventListener and then readd it on start. Mechial is figuring out
+    how to lock the whole board. You can use that when he is done*/
+
     let start = document.getElementById("start");
     let interval = -1;
     let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
+    const timer = document.querySelector(".timer");
 
-    function Start() {
-        const timer = document.querySelector(".timer");
+    function Start() {//starts timer. Later add allowance to move cards
 
         timer.innerText = completeTime;
 
@@ -25,7 +29,7 @@
         }, 1000);
     }
 
-    function Pause() {
+    function Pause() { //pauses timer. Later have it so you are unable to move cards
         start.removeEventListener("click", Pause);
         start.addEventListener("click", Start);
         start.value = "Start";
@@ -40,9 +44,10 @@
 
 
     document.getElementById("reset").addEventListener("click", () => {
-        /*The reset button, when pressed, will randomize the cards and reset 
-        the clock to have the timer ask for the input amount. It also makes the
-        start button reappear if it was in motion.*/
+        /*The reset button, when pressed, will randomize the cards*/
+        Pause(); //runs pause function
+        completeTime = 0;
+        timer.innerText = completeTime;//resets timer to 0
     });
 
     const cards = document.querySelectorAll(".card");
