@@ -3,10 +3,10 @@
 
     let start = document.getElementById("start");
     let interval = -1;
+    let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
 
     function Start() {
         const timer = document.querySelector(".timer");
-        let completeTime = 0;
 
         timer.innerText = completeTime;
 
