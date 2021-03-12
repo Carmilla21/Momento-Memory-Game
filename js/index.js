@@ -18,8 +18,7 @@
     completeTime++;
   }
 
-  function Start() {
-    //starts timer. Later add allowance to move cards
+  function Start() {//starts timer. Later add allowance to move cards
 
     interval = setInterval(timeCountUp, 1000);
 
