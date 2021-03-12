@@ -17,19 +17,13 @@
 
     completeTime++;
 
-    interval = setInterval(timeCountUp, 1000);
-
-    // interval = setInterval(function () {
-    //   completeTime++;
-    //   timer.innerText = `${minutes}:${seconds}`;
-    // }, 1000);
   }
 
 
 
   function Start() {//starts timer. Later add allowance to move cards
 
-    timeCountUp();
+    interval = setInterval(timeCountUp, 1000);
 
     start.removeEventListener("click", Start);
     start.addEventListener("click", Pause);
