@@ -6,20 +6,17 @@
   let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
   const timer = document.querySelector(".timer");
 
-
-  function timeCountUp() { //displays timer in 0:00 format and counts up
+  function timeCountUp() {
+    //displays timer in 0:00 format and counts up
     let minutes = Math.floor(completeTime / 60);
     let seconds = completeTime % 60;
 
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
     timer.innerText = `${minutes}:${seconds}`;
 
     completeTime++;
-
   }
-
-
 
   function Start() {//starts timer. Later add allowance to move cards
 
@@ -33,12 +30,12 @@
 
     start.innerText = "Pause";
 
-
     start.classList.add("pause");
     start.classList.remove("start");
   }
 
-  function Pause() { //pauses timer. Later have it so you are unable to move cards
+  function Pause() {
+    //pauses timer. Later have it so you are unable to move cards
     start.removeEventListener("click", Pause);
     start.addEventListener("click", Start);
     start.value = "Start";
@@ -52,25 +49,35 @@
     interval = -1;
   }
 
-
-
   document.getElementById("reset").addEventListener("click", () => {
     /*The reset button, when pressed, will randomize the cards*/
     Pause(); //runs pause function
     completeTime = 0;
     minutes = 0;
     seconds = 0;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
-  });
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    timer.innerText = `${minutes}:${seconds}`; //resets timer to 0
 
+    resetCards();
+    locked = true;
+    allOff();
+
+    cards.forEach((card) => {
+      if (!card.listen) {
+        card.addEventListener("click", flipCard);
+        card.setAttribute("listenter", "true");
+      }
+    });
+    shuffle();
+  });
 
   const cards = document.querySelectorAll(".card");
 
   let hasFlippedCard = false;
-  let locked = false;
+  let locked = true;
   let firstCard = null;
   let secondCard = null;
+
   /**
    * Function will add the flip class to element
    */
@@ -123,12 +130,14 @@
   }
 
   //Shuffles the cards
-  (function shuffle() {
+  function shuffle() {
     cards.forEach((card) => {
       let ramdomPos = Math.floor(Math.random() * 12);
       card.style.order = ramdomPos;
     });
-  })();
+  }
+
+  shuffle();
 
   //Reset card variables
   function resetCards() {
@@ -136,13 +145,23 @@
     [firstCard, secondCard] = [null, null];
   }
 
-  //Easy mode. Reveals six cards to play with
   let easyMode = document.querySelector(".easy");
   easyMode.addEventListener("click", easyOn);
   let easyCards = document.querySelectorAll(".easyCard");
   let mediumCards = document.querySelectorAll(".mediumCard");
   let hardCards = document.querySelectorAll(".hardCard");
 
+  function allOff() {
+    easyCards.forEach((card) => (card.style.display = "none"));
+    mediumCards.forEach((card) => (card.style.display = "none"));
+    hardCards.forEach((card) => (card.style.display = "none"));
+    cards.forEach((card) => {
+      card.style.visibility = "visible";
+      card.classList.remove("flip");
+    });
+  }
+
+  //Easy mode. Reveals six cards to play with
   function easyOn() {
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "none"));
@@ -168,5 +187,8 @@
     hardCards.forEach((card) => (card.style.display = "block"));
   }
   //Adds event listener to all cards to flip
-  cards.forEach((card) => card.addEventListener("click", flipCard));
+  cards.forEach((card) => {
+    card.addEventListener("click", flipCard);
+    card.setAttribute("listenter", "true");
+  });
 })();
