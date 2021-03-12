@@ -1,5 +1,6 @@
 (function () {
-    document.getElementById("start").addEventListener("click", Start);
+  document.getElementById("start").addEventListener("click", Start);
+
 
     /*function for disable cards remove event listener on the 
     card.addEventListener and then readd it on start. Mechial is figuring out
@@ -12,16 +13,17 @@
 
     function Start() {//starts timer. Later add allowance to move cards
 
-        timer.innerText = completeTime;
+    timer.innerText = completeTime;
 
-        start.removeEventListener("click", Start);
-        start.addEventListener("click", Pause);
-        start.value = "Pause";
+    start.removeEventListener("click", Start);
+    start.addEventListener("click", Pause);
+    start.value = "Pause";
 
-        start.innerText = "Pause";
+    start.innerText = "Pause";
 
-        start.classList.add("pause");
-        start.classList.remove("start");
+    start.classList.add("pause");
+    start.classList.remove("start");
+
 
         interval = setInterval(function () {
             completeTime++;
@@ -42,6 +44,18 @@
     }
 
 
+  function Pause() {
+    start.removeEventListener("click", Pause);
+    start.addEventListener("click", Start);
+    start.value = "Start";
+
+    start.innerText = "Start";
+    start.classList.add("start");
+    start.classList.remove("pause");
+    clearInterval(interval);
+    interval = -1;
+  }
+
 
     document.getElementById("reset").addEventListener("click", () => {
         /*The reset button, when pressed, will randomize the cards*/
@@ -50,8 +64,8 @@
         timer.innerText = completeTime;//resets timer to 0
     });
 
-    const cards = document.querySelectorAll(".card");
 
+  const cards = document.querySelectorAll(".card");
 
   let hasFlippedCard = false;
   let locked = false;
@@ -89,8 +103,8 @@
     secondCard.removeEventListener("click", flipCard);
 
     setTimeout(() => {
-      firstCard.style.display = "none";
-      secondCard.style.display = "none";
+      firstCard.style.visibility = "hidden";
+      secondCard.style.visibility = "hidden";
 
       resetCards();
     }, 1500);
@@ -108,6 +122,13 @@
     }, 1500);
   }
 
+  (function shuffle() {
+    cards.forEach((card) => {
+      let ramdomPos = Math.floor(Math.random() * 12);
+      card.style.order = ramdomPos;
+    });
+  })();
+
   //Reset card variables
   function resetCards() {
     [hasFlippedCard, locked] = [false, false];
@@ -115,7 +136,4 @@
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => card.addEventListener("click", flipCard));
-
 })();
-
-
