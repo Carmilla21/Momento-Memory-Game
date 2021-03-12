@@ -7,7 +7,6 @@
   let moriTime = 120;
   const timer = document.querySelector(".timer");
 
-
   function timeCountUp() { //displays timer in 0:00 format and counts up
     let minutes = Math.floor(completeTime / 60);
     let seconds = completeTime % 60;
@@ -41,11 +40,14 @@
 
   function Start() {//starts timer. Later add allowance to move cards
     // if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
-    interval = setInterval(timeCountDown, 1000);
+    // interval = setInterval(timeCountDown, 1000);
+    // } else if (noTimer = true) {
+    // interval = 0; //when noTimer button is pressed. Make it remove timer. just in case there is a timer first.
     // } else {
-    //   interval = setInterval(timeCountUp, 1000);
+    interval = setInterval(timeCountUp, 1000);
     // };
-
+    console.log("timer added")
+    console.log(timer.innerText);
     start.removeEventListener("click", Start);
     start.addEventListener("click", Pause);
     start.value = "Pause";
@@ -82,7 +84,7 @@
     /*do if else for momento mori so it starts at 2mins. maybe try doing this 
     as if else AND then the pause(). So that the change happens first. That way
     you may be able to just put in the countUp or countDown function in the if
-    else instead of all that is below*/
+    else instead of all that is below. Maybe have reset just remove the timer.*/
 
     completeTime = 0;
     minutes = 0;
@@ -174,6 +176,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
+    locked = true;
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -184,6 +187,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "none"));
+    locked = true;
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector(".hard");
@@ -193,6 +197,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "block"));
+    locked = true;
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => card.addEventListener("click", flipCard));
