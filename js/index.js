@@ -52,21 +52,31 @@
   function Start() {//starts timer. Later add allowance to move cards
     if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
       interval = setInterval(timeCountDown, 1000);
+
+      start.removeEventListener("click", Pause);
+      start.removeEventListener("click", Start);
+
+      start.innerText = "Memento Mori";
+
+      start.classList.remove("start");
+      start.classList.remove("pause");
+      start.classList.add("mementoMori");
+
+
     } else {
       interval = setInterval(timeCountUp, 1000);
-    };
 
-    start.removeEventListener("click", Start);
-    start.addEventListener("click", Pause);
-    start.value = "Pause";
+      start.innerText = "Pause";
+      start.removeEventListener("click", Start);
+      start.addEventListener("click", Pause);
+      start.value = "Pause";
+
+      start.classList.add("pause");
+      start.classList.remove("start");
+    };
 
     locked = false;
 
-    start.innerText = "Pause";
-
-
-    start.classList.add("pause");
-    start.classList.remove("start");
   }
 
 
@@ -86,15 +96,9 @@
   }
 
 
-
   document.getElementById("reset").addEventListener("click", () => {
-    /*The reset button, when pressed, will randomize the cards*/
-    Pause(); //runs pause function
 
-    /*do if else for momento mori so it starts at 2mins. maybe try doing this 
-    as if else AND then the pause(). So that the change happens first. That way
-    you may be able to just put in the countUp or countDown function in the if
-    else instead of all that is below. Maybe have reset just remove the timer.*/
+    Pause(); //runs pause function
 
     if (isMori === true) {
       moriTime = 120;
@@ -102,6 +106,7 @@
       seconds = 0;
       seconds = seconds < 10 ? '0' + seconds : seconds;
       timer.innerText = `${minutes}:${seconds}`;
+
     } else {
       completeTime = 0;
       minutes = 0;
@@ -109,6 +114,7 @@
       seconds = seconds < 10 ? '0' + seconds : seconds;
       timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
     }
+
   });
 
 
