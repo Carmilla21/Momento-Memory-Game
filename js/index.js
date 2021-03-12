@@ -176,7 +176,6 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
-    locked = true;
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -187,7 +186,6 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "none"));
-    locked = true;
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector(".hard");
@@ -197,7 +195,6 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "block"));
-    locked = true;
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => card.addEventListener("click", flipCard));
