@@ -3,9 +3,16 @@
   margin: 0;
 }
 
+.dark {
+  color: white;
+}
 body {
   height: 100vh;
   display: flex;
+  background-image: url("./assets/IMG_0107\ \(1\).jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .game-container {
@@ -15,11 +22,15 @@ body {
   flex-wrap: wrap;
   margin: auto;
   perspective: 1000px;
+  background-image: url("./assets/table_texture_2.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 .card {
-  width: calc(25% - 10px);
-  height: calc(33.333% - 10px);
-  margin: 5px;
+  width: calc(25% - 35px);
+  height: calc(33.333% - 40px);
+  margin: 15px;
   position: relative;
   transform-style: preserve-3d;
   transform: scale(1);
