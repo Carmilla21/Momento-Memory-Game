@@ -1,53 +1,55 @@
 (function () {
   document.getElementById("start").addEventListener("click", Start);
 
+  let start = document.getElementById("start");
+  let interval = -1;
+  let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
+  const timer = document.querySelector(".timer");
 
-    /*function for disable cards remove event listener on the 
-    card.addEventListener and then readd it on start. Mechial is figuring out
-    how to lock the whole board. You can use that when he is done*/
 
-    let start = document.getElementById("start");
-    let interval = -1;
-    let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
-    const timer = document.querySelector(".timer");
+  function timeCountUp() { //displays timer in 0:00 format and counts up
+    let minutes = Math.floor(completeTime / 60);
+    let seconds = completeTime % 60;
 
-    function Start() {//starts timer. Later add allowance to move cards
+    seconds = seconds < 10 ? '0' + seconds : seconds;
 
-    timer.innerText = completeTime;
+    timer.innerText = `${minutes}:${seconds}`;
+
+    completeTime++;
+
+    interval = setInterval(timeCountUp, 1000);
+
+    // interval = setInterval(function () {
+    //   completeTime++;
+    //   timer.innerText = `${minutes}:${seconds}`;
+    // }, 1000);
+  }
+
+
+
+  function Start() {//starts timer. Later add allowance to move cards
+
+    timeCountUp();
 
     start.removeEventListener("click", Start);
     start.addEventListener("click", Pause);
     start.value = "Pause";
 
+    locked = false;
+
     start.innerText = "Pause";
+
 
     start.classList.add("pause");
     start.classList.remove("start");
+  }
 
-
-        interval = setInterval(function () {
-            completeTime++;
-            timer.innerText = completeTime;
-        }, 1000);
-    }
-
-    function Pause() { //pauses timer. Later have it so you are unable to move cards
-        start.removeEventListener("click", Pause);
-        start.addEventListener("click", Start);
-        start.value = "Start";
-
-        start.innerText = "Start";
-        start.classList.add("start");
-        start.classList.remove("pause");
-        clearInterval(interval);
-        interval = -1;
-    }
-
-
-  function Pause() {
+  function Pause() { //pauses timer. Later have it so you are unable to move cards
     start.removeEventListener("click", Pause);
     start.addEventListener("click", Start);
     start.value = "Start";
+
+    locked = true;
 
     start.innerText = "Start";
     start.classList.add("start");
@@ -57,12 +59,16 @@
   }
 
 
-    document.getElementById("reset").addEventListener("click", () => {
-        /*The reset button, when pressed, will randomize the cards*/
-        Pause(); //runs pause function
-        completeTime = 0;
-        timer.innerText = completeTime;//resets timer to 0
-    });
+
+  document.getElementById("reset").addEventListener("click", () => {
+    /*The reset button, when pressed, will randomize the cards*/
+    Pause(); //runs pause function
+    completeTime = 0;
+    minutes = 0;
+    seconds = 0;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
+  });
 
 
   const cards = document.querySelectorAll(".card");
