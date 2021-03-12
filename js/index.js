@@ -5,6 +5,7 @@
   let interval = -1;
   let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
   let moriTime = 120;
+  let isMori = false;
   const timer = document.querySelector(".timer");
 
 
@@ -49,13 +50,11 @@
 
 
   function Start() {//starts timer. Later add allowance to move cards
-    // if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
-    // interval = setInterval(timeCountDown, 1000);
-    // } else if (noTimer = true) {
-    // interval = 0; //when noTimer button is pressed. Make it remove timer. just in case there is a timer first.
-    // } else {
-    interval = setInterval(timeCountUp, 1000);
-    // };
+    if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
+      interval = setInterval(timeCountDown, 1000);
+    } else {
+      interval = setInterval(timeCountUp, 1000);
+    };
 
     start.removeEventListener("click", Start);
     start.addEventListener("click", Pause);
@@ -69,6 +68,8 @@
     start.classList.add("pause");
     start.classList.remove("start");
   }
+
+
 
   function Pause() { //pauses timer. Later have it so you are unable to move cards
     start.removeEventListener("click", Pause);
@@ -95,11 +96,19 @@
     you may be able to just put in the countUp or countDown function in the if
     else instead of all that is below. Maybe have reset just remove the timer.*/
 
-    completeTime = 0;
-    minutes = 0;
-    seconds = 0;
-    seconds = seconds < 10 ? '0' + seconds : seconds;
-    timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
+    if (isMori === true) {
+      moriTime = 120;
+      minutes = 2;
+      seconds = 0;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      timer.innerText = `${minutes}:${seconds}`;
+    } else {
+      completeTime = 0;
+      minutes = 0;
+      seconds = 0;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
+    }
   });
 
 
@@ -186,6 +195,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
+    isMori = false;
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -196,6 +206,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "none"));
+    isMori = false;
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector(".hard");
@@ -205,6 +216,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "block"));
+    isMori = true;
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => card.addEventListener("click", flipCard));
