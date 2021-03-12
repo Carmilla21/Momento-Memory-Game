@@ -32,7 +32,9 @@
 
     moriTime--;
 
-    //get it to stop at 0
+    if (moriTime < 0) {
+      clearInterval(interval);
+    }
 
   }
 
