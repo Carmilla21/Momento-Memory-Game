@@ -4,6 +4,7 @@
   let start = document.getElementById("start");
   let interval = -1;
   let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
+  let moriTime = 120;
   const timer = document.querySelector(".timer");
 
 
@@ -17,13 +18,31 @@
 
     completeTime++;
 
+
   }
 
 
+  function timeCountDown() { //starts at 2 and counts down
+    let minutes = Math.floor(moriTime / 60);
+    let seconds = moriTime % 60;
+
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    timer.innerText = `${minutes}:${seconds}`;
+
+    moriTime--;
+
+    //get it to stop at 0
+
+  }
+
 
   function Start() {//starts timer. Later add allowance to move cards
-
-    interval = setInterval(timeCountUp, 1000);
+    // if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
+    interval = setInterval(timeCountDown, 1000);
+    // } else {
+    //   interval = setInterval(timeCountUp, 1000);
+    // };
 
     start.removeEventListener("click", Start);
     start.addEventListener("click", Pause);
@@ -57,6 +76,12 @@
   document.getElementById("reset").addEventListener("click", () => {
     /*The reset button, when pressed, will randomize the cards*/
     Pause(); //runs pause function
+
+    /*do if else for momento mori so it starts at 2mins. maybe try doing this 
+    as if else AND then the pause(). So that the change happens first. That way
+    you may be able to just put in the countUp or countDown function in the if
+    else instead of all that is below*/
+
     completeTime = 0;
     minutes = 0;
     seconds = 0;
