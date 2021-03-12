@@ -1,52 +1,49 @@
 (function () {
-    document.getElementById("start").addEventListener("click", Start);
+  document.getElementById("start").addEventListener("click", Start);
 
-    let start = document.getElementById("start");
-    let interval = -1;
-    let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
+  let start = document.getElementById("start");
+  let interval = -1;
+  let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
 
-    function Start() {
-        const timer = document.querySelector(".timer");
+  function Start() {
+    const timer = document.querySelector(".timer");
 
-        timer.innerText = completeTime;
+    timer.innerText = completeTime;
 
-        start.removeEventListener("click", Start);
-        start.addEventListener("click", Pause);
-        start.value = "Pause";
+    start.removeEventListener("click", Start);
+    start.addEventListener("click", Pause);
+    start.value = "Pause";
 
-        start.innerText = "Pause";
+    start.innerText = "Pause";
 
-        start.classList.add("pause");
-        start.classList.remove("start");
+    start.classList.add("pause");
+    start.classList.remove("start");
 
-        interval = setInterval(function () {
-            completeTime++;
-            timer.innerText = completeTime;
-        }, 1000);
-    }
+    interval = setInterval(function () {
+      completeTime++;
+      timer.innerText = completeTime;
+    }, 1000);
+  }
 
-    function Pause() {
-        start.removeEventListener("click", Pause);
-        start.addEventListener("click", Start);
-        start.value = "Start";
+  function Pause() {
+    start.removeEventListener("click", Pause);
+    start.addEventListener("click", Start);
+    start.value = "Start";
 
-        start.innerText = "Start";
-        start.classList.add("start");
-        start.classList.remove("pause");
-        clearInterval(interval);
-        interval = -1;
-    }
+    start.innerText = "Start";
+    start.classList.add("start");
+    start.classList.remove("pause");
+    clearInterval(interval);
+    interval = -1;
+  }
 
-
-
-    document.getElementById("reset").addEventListener("click", () => {
-        /*The reset button, when pressed, will randomize the cards and reset 
+  document.getElementById("reset").addEventListener("click", () => {
+    /*The reset button, when pressed, will randomize the cards and reset 
         the clock to have the timer ask for the input amount. It also makes the
         start button reappear if it was in motion.*/
-    });
+  });
 
-    const cards = document.querySelectorAll(".card");
-
+  const cards = document.querySelectorAll(".card");
 
   let hasFlippedCard = false;
   let locked = false;
@@ -84,8 +81,8 @@
     secondCard.removeEventListener("click", flipCard);
 
     setTimeout(() => {
-      firstCard.style.display = "none";
-      secondCard.style.display = "none";
+      firstCard.style.visibility = "hidden";
+      secondCard.style.visibility = "hidden";
 
       resetCards();
     }, 1500);
@@ -103,6 +100,13 @@
     }, 1500);
   }
 
+  (function shuffle() {
+    cards.forEach((card) => {
+      let ramdomPos = Math.floor(Math.random() * 12);
+      card.style.order = ramdomPos;
+    });
+  })();
+
   //Reset card variables
   function resetCards() {
     [hasFlippedCard, locked] = [false, false];
@@ -110,7 +114,4 @@
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => card.addEventListener("click", flipCard));
-
 })();
-
-
