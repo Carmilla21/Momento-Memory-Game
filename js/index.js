@@ -7,6 +7,7 @@
   let moriTime = 120;
   const timer = document.querySelector(".timer");
 
+
   function timeCountUp() { //displays timer in 0:00 format and counts up
     let minutes = Math.floor(completeTime / 60);
     let seconds = completeTime % 60;
@@ -16,8 +17,6 @@
     timer.innerText = `${minutes}:${seconds}`;
 
     completeTime++;
-
-
   }
 
 
@@ -35,7 +34,18 @@
       clearInterval(interval);
     }
 
-  }
+  };
+
+
+  let removeTime = document.getElementById("noTimer");
+  removeTime.addEventListener("change", () => {
+    if (removeTime.checked) {
+      timer.style.display = "none";
+    } else {
+      timer.style.display = "block";
+    }
+  });
+
 
 
   function Start() {//starts timer. Later add allowance to move cards
@@ -46,8 +56,7 @@
     // } else {
     interval = setInterval(timeCountUp, 1000);
     // };
-    console.log("timer added")
-    console.log(timer.innerText);
+
     start.removeEventListener("click", Start);
     start.addEventListener("click", Pause);
     start.value = "Pause";
@@ -92,6 +101,7 @@
     seconds = seconds < 10 ? '0' + seconds : seconds;
     timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
   });
+
 
 
   const cards = document.querySelectorAll(".card");
