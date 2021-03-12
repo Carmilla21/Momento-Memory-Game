@@ -13,12 +13,18 @@
 
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
+    timer.innerText = `${minutes}:${seconds}`;
 
-    interval = setInterval(function () {
-      completeTime++;
-      timer.innerText = `${minutes}:${seconds}`;
-    }, 1000);
+    completeTime++;
+
+    interval = setInterval(timeCountUp, 1000);
+
+    // interval = setInterval(function () {
+    //   completeTime++;
+    //   timer.innerText = `${minutes}:${seconds}`;
+    // }, 1000);
   }
+
 
 
   function Start() {//starts timer. Later add allowance to move cards
@@ -53,24 +59,15 @@
   }
 
 
-  function Pause() {
-    start.removeEventListener("click", Pause);
-    start.addEventListener("click", Start);
-    start.value = "Start";
-
-    start.innerText = "Start";
-    start.classList.add("start");
-    start.classList.remove("pause");
-    clearInterval(interval);
-    interval = -1;
-  }
-
 
   document.getElementById("reset").addEventListener("click", () => {
     /*The reset button, when pressed, will randomize the cards*/
     Pause(); //runs pause function
     completeTime = 0;
-    timer.innerText = completeTime;//resets timer to 0
+    minutes = 0;
+    seconds = 0;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
   });
 
 
