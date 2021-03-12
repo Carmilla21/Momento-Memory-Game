@@ -122,6 +122,7 @@
     }, 1500);
   }
 
+  //Shuffles the cards
   (function shuffle() {
     cards.forEach((card) => {
       let ramdomPos = Math.floor(Math.random() * 12);
@@ -133,6 +134,38 @@
   function resetCards() {
     [hasFlippedCard, locked] = [false, false];
     [firstCard, secondCard] = [null, null];
+  }
+
+  //Easy mode. Reveals six cards to play with
+  let easyMode = document.querySelector(".easy");
+  easyMode.addEventListener("click", easyOn);
+  let easyCards = document.querySelectorAll(".easyCard");
+  let mediumCards = document.querySelectorAll(".mediumCard");
+  let hardCards = document.querySelectorAll(".hardCard");
+
+  function easyOn() {
+    easyCards.forEach((card) => (card.style.display = "block"));
+    mediumCards.forEach((card) => (card.style.display = "none"));
+    hardCards.forEach((card) => (card.style.display = "none"));
+  }
+
+  //Medium mode. Reveals 8 cards to play with
+  let mediumMode = document.querySelector(".medium");
+  mediumMode.addEventListener("click", mediumOn);
+
+  function mediumOn() {
+    easyCards.forEach((card) => (card.style.display = "block"));
+    mediumCards.forEach((card) => (card.style.display = "block"));
+    hardCards.forEach((card) => (card.style.display = "none"));
+  }
+  //Hard mode. Reveals 12 cards to play with
+  let hardMode = document.querySelector(".hard");
+  hardMode.addEventListener("click", hardOn);
+
+  function hardOn() {
+    easyCards.forEach((card) => (card.style.display = "block"));
+    mediumCards.forEach((card) => (card.style.display = "block"));
+    hardCards.forEach((card) => (card.style.display = "block"));
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => card.addEventListener("click", flipCard));
