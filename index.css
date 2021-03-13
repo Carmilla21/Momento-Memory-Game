@@ -13,28 +13,37 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  position: relative;
 }
 
 .game-container {
-  width: 640px;
-  height: 640px;
+  width: 350px;
+  height: 350px;
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
+  margin: 0;
   perspective: 1000px;
-  background-image: url("./assets/table_texture_2.jpg");
+  background-image: url("./assets/gryffyn-m-O8pEyjTnI7U-unsplash.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 .card {
-  width: calc(25% - 35px);
-  height: calc(33.333% - 40px);
-  margin: 15px;
-  position: relative;
+  width: calc(25% - 55px);
+  height: calc(25% - 25px);
+  margin-left: 24px;
+  margin-right: 30px;
   transform-style: preserve-3d;
   transform: scale(1);
   transition: transform 0.5s;
+  position: relative;
+  left: calc(10% - 45px);
+  top: calc(10% - 45px);
   display: none;
 }
 
@@ -59,4 +68,8 @@ body {
 
 .card.flip {
   transform: rotateY(180deg);
+}
+
+.container {
+  height:10%;
 }
