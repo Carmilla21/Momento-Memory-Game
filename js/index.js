@@ -38,8 +38,10 @@
   };
 
 
-  function loseTime() {
-    interval = setInterval(timeCountDown, 10000);
+  function loseTime() {//it's under "unFlip" for now
+    for (i = 0; i < 10; i++) {
+      timeCountDown();
+    };
   };
 
 
