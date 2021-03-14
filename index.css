@@ -13,6 +13,10 @@
   justify-content: center;
 }
 
+.dark1 {
+  color: white;
+}
+
 
 body {
   height: 100vh;
@@ -99,26 +103,26 @@ body {
   justify-content: space-between;
   width: calc(100% - 75px);
   position:absolute;
-  top: 75%;
+  top: calc(75% + 20px);
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 
-.timer {
+#timer {
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  position:relative;
-  top: calc(50% + 50px);
   font-size: 100px;
+  position: relative;
+  top: calc(55% + 20px);
 }
 
 #start {
   background-color: transparent;
   cursor:pointer;
-  color: white;
+  color: #d2e6ff;
   border-radius: 15px;
   height:20px;
   width: 50px;
@@ -128,7 +132,7 @@ body {
 #reset {
   background-color: transparent;
   cursor:pointer;
-  color: white;
+  color: #d2e6ff;
   border-radius: 15px;
   height:20px;
   width: 50px;
@@ -139,7 +143,7 @@ body {
 .difficulty {
   background-color: transparent;
   cursor:pointer;
-  color: #445d7b;
+  color: #d2e6ff;
   border-radius: 15px;
   border:none;
 
@@ -150,6 +154,48 @@ body {
   height: calc(75% - 25px);
   display: flex;
   flex-direction: column;
-  justify-content: space-around
+  justify-content: space-around;
+  position:relative;
+  top: 20px;
 
 }
+
+#remove {
+  font-size: 12px;
+}
+
+.subButton{
+  position: relative;
+  top: -35px;
+}
+@media (min-width: 1024px) {
+
+  .difficulty {
+    background-color: transparent;
+    cursor:pointer;
+    color: #26323f;
+    font-size:20px;
+    border-radius: 15px;
+    border:none;
+  
+  }
+
+  #start {
+    font-size: 35px;
+    left: calc(10% - 5px);
+  }
+  
+  #reset {
+    font-size:35px;
+    left: calc(-10% - 5px);
+    color:#26323f;
+  
+  }
+
+  h1 {
+    font-size: 75px;
+  }
+
+}
+
+
