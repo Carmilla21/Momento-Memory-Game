@@ -6,15 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="index.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase&display=swap" rel="stylesheet">
   <title>Momento</title>
 </head>
 
 <body>
-  <div class="container">
-    <div class="timer dark"></div>
+  <div class="container" id="difficulty">
     <div class="dark">
-      Choose your difficulty <button class="easy">Memory - Easy</button>
-      <button class="medium">Momento - Medium</button><button class="hard">Momento Mori - Hard</button>
+      <h1>
+        Choose your difficulty</h1>
+      <div id="difficultyButtons"><button id="easy" class="difficulty">Memory - Easy</button>
+        <button id="medium" class="difficulty">Momento - Medium</button><button id="hard" class="difficulty">
+          Momento
+          Mori - Hard</button>
+      </div>
     </div>
   </div>
 
@@ -69,14 +75,12 @@
     </div>
   </div>
 
-  <div class="container">
-    <button id="start" class="start">Start</button>
+  <div class="container" id="timebutton">
+    <button id="start" class="start" type="submit">Start</button>
     <button id="reset">Reset</button>
-    <div>
-      <input type="checkbox" id="noTimer" name="Remove Timer">
-      <label class="dark" for="Remove Timer">Remove Timer</label>
-    </div>
   </div>
+  <div class="timer"></div>
+
 
   <script src="./js/index.js"></script>
 </body>
