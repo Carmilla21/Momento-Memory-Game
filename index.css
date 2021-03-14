@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 
@@ -52,7 +53,7 @@ body {
   transition: transform 0.5s;
   position: relative;
   left: calc(10% - 45px);
-  top: calc(10% - 45px);
+  top: calc(10% - 30px);
   display: none;
 }
 
@@ -86,6 +87,9 @@ body {
   align-items: center;
   justify-content: center;
   height:20%;
+  position:relative;
+  top:calc(5% - 5px);
+  color: #445d7b;
 }
 
 #timebutton {
@@ -134,15 +138,17 @@ body {
 .difficulty {
   background-color: transparent;
   cursor:pointer;
-  color: white;
+  color: #445d7b;
   border-radius: 15px;
   border:none;
+
 }
 
+
 #difficultyButtons {
-  height: calc(50% - 25px);
+  height: calc(75% - 25px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around
 
 }

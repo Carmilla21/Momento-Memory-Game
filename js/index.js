@@ -137,7 +137,7 @@
   }
 
   //Easy mode. Reveals six cards to play with
-  let easyMode = document.querySelector(".easy");
+  let easyMode = document.querySelector("#easy");
   easyMode.addEventListener("click", easyOn);
   let easyCards = document.querySelectorAll(".easyCard");
   let mediumCards = document.querySelectorAll(".mediumCard");
@@ -150,7 +150,7 @@
   }
 
   //Medium mode. Reveals 8 cards to play with
-  let mediumMode = document.querySelector(".medium");
+  let mediumMode = document.querySelector("#medium");
   mediumMode.addEventListener("click", mediumOn);
 
   function mediumOn() {
@@ -159,7 +159,7 @@
     hardCards.forEach((card) => (card.style.display = "none"));
   }
   //Hard mode. Reveals 12 cards to play with
-  let hardMode = document.querySelector(".hard");
+  let hardMode = document.querySelector("#hard");
   hardMode.addEventListener("click", hardOn);
 
   function hardOn() {
