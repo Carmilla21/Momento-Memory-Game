@@ -6,6 +6,7 @@
   let moriTime = 120;
   let isMori = false;
   const timer = document.querySelector(".timer");
+  let checkBox = document.querySelector("label")
 
 
   function timeCountUp() {//displays timer in 0:00 format and counts up
@@ -37,6 +38,11 @@
   };
 
 
+  function loseTime() {
+    interval = setInterval(timeCountDown, 10000);
+  };
+
+
   let removeTime = document.getElementById("noTimer");
   removeTime.addEventListener("change", () => {//lets the timer display or not.
     if (removeTime.checked) {
@@ -65,7 +71,6 @@
       start.classList.remove("pause");
       start.classList.add("mementoMori");
 
-      let checkBox = document.querySelector("label")
       checkBox.innerText = "Your Fate is Sealed";
 
 
@@ -127,6 +132,8 @@
     }
 
     timer.style.display = "none"; //removes timer from screen.
+    checkBox.innerText = "Remove Time Limit";
+    removeTime.style.visibility = "visible";
 
     resetCards();
     locked = true;
@@ -196,6 +203,10 @@
       firstCard.classList.remove("flip");
       secondCard.classList.remove("flip");
 
+      while (isMori === true) {
+        loseTime();
+        break;
+      }
       resetCards();
     }, 1500);
   }
