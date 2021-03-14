@@ -4,6 +4,8 @@
   let start = document.getElementById("start");
   let interval = -1;
   let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
+  let moriTime = 120;
+  let isMori = false;
   const timer = document.querySelector(".timer");
 
   function timeCountUp() {
@@ -18,24 +20,65 @@
     completeTime++;
   }
 
+  function timeCountDown() { //starts at 2 and counts down
+    let minutes = Math.floor(moriTime / 60);
+    let seconds = moriTime % 60;
+
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    timer.innerText = `${minutes}:${seconds}`;
+
+    moriTime--;
+
+    if (moriTime < 0) {
+      clearInterval(interval);
+    }
+
+  };
+
+
+  let removeTime = document.getElementById("noTimer");
+  removeTime.addEventListener("change", () => {
+    if (removeTime.checked) {
+      timer.style.display = "none";
+    } else {
+      timer.style.display = "block";
+    }
+  });
+
+  
   function Start() {//starts timer. Later add allowance to move cards
+    if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
+      interval = setInterval(timeCountDown, 1000);
 
-    interval = setInterval(timeCountUp, 1000);
+      start.removeEventListener("click", Pause);
+      start.removeEventListener("click", Start);
 
-    start.removeEventListener("click", Start);
-    start.addEventListener("click", Pause);
-    start.value = "Pause";
+      start.innerText = "Memento Mori";
+
+      start.classList.remove("start");
+      start.classList.remove("pause");
+      start.classList.add("mementoMori");
+
+
+    } else {
+      interval = setInterval(timeCountUp, 1000);
+
+      start.innerText = "Pause";
+      start.removeEventListener("click", Start);
+      start.addEventListener("click", Pause);
+      start.value = "Pause";
+
+      start.classList.add("pause");
+      start.classList.remove("start");
+    };
 
     locked = false;
 
-    start.innerText = "Pause";
-
-    start.classList.add("pause");
-    start.classList.remove("start");
   }
 
-  function Pause() {
-    //pauses timer. Later have it so you are unable to move cards
+  function Pause() { //pauses timer. Later have it so you are unable to move cards
+
     start.removeEventListener("click", Pause);
     start.addEventListener("click", Start);
     start.value = "Start";
@@ -49,15 +92,27 @@
     interval = -1;
   }
 
-  document.getElementById("reset").addEventListener("click", () => {
-    /*The reset button, when pressed, will randomize the cards*/
-    Pause(); //runs pause function
-    completeTime = 0;
-    minutes = 0;
-    seconds = 0;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    timer.innerText = `${minutes}:${seconds}`; //resets timer to 0
 
+  document.getElementById("reset").addEventListener("click", () => {
+
+    Pause(); //runs pause function
+
+
+    if (isMori === true) {
+      moriTime = 120;
+      minutes = 2;
+      seconds = 0;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      timer.innerText = `${minutes}:${seconds}`;
+
+    } else {
+      completeTime = 0;
+      minutes = 0;
+      seconds = 0;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
+    }
+    
     resetCards();
     locked = true;
     allOff();
@@ -70,6 +125,7 @@
     });
     shuffle();
   });
+
 
   const cards = document.querySelectorAll(".card");
 
@@ -166,6 +222,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
+    isMori = false;
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -176,6 +233,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "none"));
+    isMori = false;
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector(".hard");
@@ -185,6 +243,7 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "block"));
+    isMori = true;
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => {
