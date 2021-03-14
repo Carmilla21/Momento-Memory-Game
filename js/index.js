@@ -5,7 +5,7 @@
   let completeTime = 0;//this and moriTime are universal to keep time.
   let moriTime = 120;
   let isMori = false;
-  const timer = document.querySelector(".timer");
+  const timer = document.querySelector("#timer");
   let checkBox = document.querySelector("label")
 
 
@@ -50,7 +50,7 @@
     if (removeTime.checked) {
       timer.style.display = "none";
     } else {
-      timer.style.display = "block";
+      timer.style.display = "flex";
     }
   });
 
@@ -59,7 +59,7 @@
 
     difficultyOff();//removes ability to select difficulty until restarted.
 
-    timer.style.display = "block"; //displays timer
+    timer.style.display = "flex"; //displays timer
 
     if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
       interval = setInterval(timeCountDown, 1000);
