@@ -54,6 +54,8 @@
 
     difficultyOff();
 
+    timer.style.display = "block";
+
     if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
       interval = setInterval(timeCountDown, 1000);
 
@@ -65,8 +67,6 @@
       start.classList.remove("start");
       start.classList.remove("pause");
       start.classList.add("mementoMori");
-
-
 
 
     } else {
@@ -81,9 +81,12 @@
       start.classList.remove("start");
     };
 
+
     locked = false;
 
   }
+
+
 
   function Pause() { //pauses timer. Later have it so you are unable to move cards
 
@@ -99,6 +102,7 @@
     clearInterval(interval);
     interval = -1;
   }
+
 
 
   document.getElementById("reset").addEventListener("click", () => {
@@ -122,6 +126,7 @@
       timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
     }
 
+    timer.style.display = "none";
 
     resetCards();
     locked = true;
