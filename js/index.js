@@ -67,6 +67,9 @@
       start.classList.remove("pause");
       start.classList.add("mementoMori");
 
+      let checkBox = document.querySelector("label")
+      checkBox.innerText = "Your Fate is Sealed";
+
 
     } else {//if any difficulty other then memento mori is selected.
       interval = setInterval(timeCountUp, 1000);
@@ -252,6 +255,7 @@
     hardCards.forEach((card) => (card.style.display = "none"));
     isMori = false;
     document.getElementById("start").addEventListener("click", Start);
+    removeTime.style.display = "block";
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -264,6 +268,7 @@
     hardCards.forEach((card) => (card.style.display = "none"));
     isMori = false;
     document.getElementById("start").addEventListener("click", Start);
+    removeTime.style.display = "block";
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector(".hard");
@@ -275,6 +280,7 @@
     hardCards.forEach((card) => (card.style.display = "block"));
     isMori = true;
     document.getElementById("start").addEventListener("click", Start);
+    removeTime.style.display = "none";
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => {
