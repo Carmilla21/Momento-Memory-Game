@@ -40,7 +40,9 @@
 
   let removeTime = document.getElementById("noTimer");
   removeTime.addEventListener("change", () => {
-    if (removeTime.checked) {
+    if (isMori === true) {
+      timer.style.display = "block";
+    } else if (removeTime.checked) {
       timer.style.display = "none";
     } else {
       timer.style.display = "block";
@@ -49,6 +51,9 @@
 
 
   function Start() {//starts timer. Later add allowance to move cards
+
+    difficultyOff();
+
     if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
       interval = setInterval(timeCountDown, 1000);
 
@@ -60,6 +65,8 @@
       start.classList.remove("start");
       start.classList.remove("pause");
       start.classList.add("mementoMori");
+
+
 
 
     } else {
@@ -97,7 +104,8 @@
   document.getElementById("reset").addEventListener("click", () => {
 
     Pause(); //runs pause function
-
+    difficultyOn(); //let's select difficulty happen
+    document.getElementById("start").removeEventListener("click", Start);
 
     if (isMori === true) {
       moriTime = 120;
@@ -114,7 +122,6 @@
       timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
     }
 
-    document.getElementById("start").removeEventListener("click", Start);
 
     resetCards();
     locked = true;
@@ -219,6 +226,20 @@
       card.classList.remove("flip");
     });
   }
+
+
+  function difficultyOff() {
+    easyMode.removeEventListener("click", easyOn);
+    mediumMode.removeEventListener("click", mediumOn);
+    hardMode.removeEventListener("click", hardOn);
+  };
+
+  function difficultyOn() {
+    easyMode.addEventListener("click", easyOn);
+    mediumMode.addEventListener("click", mediumOn);
+    hardMode.addEventListener("click", hardOn);
+  }
+
 
   //Easy mode. Reveals six cards to play with
   function easyOn() {
