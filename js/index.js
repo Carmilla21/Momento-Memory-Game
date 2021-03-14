@@ -39,9 +39,7 @@
 
   let removeTime = document.getElementById("noTimer");
   removeTime.addEventListener("change", () => {//lets the timer display or not.
-    if (isMori === true) {
-      timer.style.display = "block";
-    } else if (removeTime.checked) {
+    if (removeTime.checked) {
       timer.style.display = "none";
     } else {
       timer.style.display = "block";
@@ -255,7 +253,7 @@
     hardCards.forEach((card) => (card.style.display = "none"));
     isMori = false;
     document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.display = "block";
+    removeTime.style.visibility = "visible";
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -268,7 +266,7 @@
     hardCards.forEach((card) => (card.style.display = "none"));
     isMori = false;
     document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.display = "block";
+    removeTime.style.visibility = "visible";
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector(".hard");
@@ -280,7 +278,7 @@
     hardCards.forEach((card) => (card.style.display = "block"));
     isMori = true;
     document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.display = "none";
+    removeTime.style.visibility = "hidden";
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => {
