@@ -1,5 +1,4 @@
 (function () {
-  document.getElementById("start").addEventListener("click", Start);
 
   let start = document.getElementById("start");
   let interval = -1;
@@ -7,6 +6,7 @@
   let moriTime = 120;
   let isMori = false;
   const timer = document.querySelector(".timer");
+
 
   function timeCountUp() {
     //displays timer in 0:00 format and counts up
@@ -19,6 +19,7 @@
 
     completeTime++;
   }
+
 
   function timeCountDown() { //starts at 2 and counts down
     let minutes = Math.floor(moriTime / 60);
@@ -46,7 +47,7 @@
     }
   });
 
-  
+
   function Start() {//starts timer. Later add allowance to move cards
     if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
       interval = setInterval(timeCountDown, 1000);
@@ -112,7 +113,9 @@
       seconds = seconds < 10 ? '0' + seconds : seconds;
       timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
     }
-    
+
+    document.getElementById("start").removeEventListener("click", Start);
+
     resetCards();
     locked = true;
     allOff();
@@ -223,6 +226,7 @@
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
     isMori = false;
+    document.getElementById("start").addEventListener("click", Start);
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -234,6 +238,7 @@
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "none"));
     isMori = false;
+    document.getElementById("start").addEventListener("click", Start);
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector(".hard");
@@ -244,6 +249,7 @@
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "block"));
     isMori = true;
+    document.getElementById("start").addEventListener("click", Start);
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => {
