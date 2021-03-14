@@ -2,36 +2,35 @@
 
   let start = document.getElementById("start");
   let interval = -1;
-  let completeTime = 0; //starts timer at 0 but won't reset when start is pushed again.
+  let completeTime = 0;//this and moriTime are universal to keep time.
   let moriTime = 120;
   let isMori = false;
   const timer = document.querySelector(".timer");
 
 
-  function timeCountUp() {
-    //displays timer in 0:00 format and counts up
-    let minutes = Math.floor(completeTime / 60);
+  function timeCountUp() {//displays timer in 0:00 format and counts up
+    let minutes = Math.floor(completeTime / 60); //turns seconds to minutes
     let seconds = completeTime % 60;
 
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+    seconds = seconds < 10 ? "0" + seconds : seconds; //sets timer structure
 
-    timer.innerText = `${minutes}:${seconds}`;
+    timer.innerText = `${minutes}:${seconds}`;//adds the above to make timer.
 
-    completeTime++;
+    completeTime++;//increments so seconds add up.
   }
 
 
   function timeCountDown() { //starts at 2 and counts down
-    let minutes = Math.floor(moriTime / 60);
+    let minutes = Math.floor(moriTime / 60);//same as above just different starting value.
     let seconds = moriTime % 60;
 
     seconds = seconds < 10 ? '0' + seconds : seconds;
 
     timer.innerText = `${minutes}:${seconds}`;
 
-    moriTime--;
+    moriTime--;//increments so seconds pass.
 
-    if (moriTime < 0) {
+    if (moriTime < 0) {//stops the clock at 0:00. Need to apply lose condition.
       clearInterval(interval);
     }
 
@@ -39,7 +38,7 @@
 
 
   let removeTime = document.getElementById("noTimer");
-  removeTime.addEventListener("change", () => {
+  removeTime.addEventListener("change", () => {//lets the timer display or not.
     if (isMori === true) {
       timer.style.display = "block";
     } else if (removeTime.checked) {
@@ -50,11 +49,11 @@
   });
 
 
-  function Start() {//starts timer. Later add allowance to move cards
+  function Start() {//starts timer. 
 
-    difficultyOff();
+    difficultyOff();//removes ability to select difficulty until restarted.
 
-    timer.style.display = "block";
+    timer.style.display = "block"; //displays timer
 
     if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
       interval = setInterval(timeCountDown, 1000);
@@ -69,7 +68,7 @@
       start.classList.add("mementoMori");
 
 
-    } else {
+    } else {//if any difficulty other then memento mori is selected.
       interval = setInterval(timeCountUp, 1000);
 
       start.innerText = "Pause";
@@ -82,7 +81,7 @@
     };
 
 
-    locked = false;
+    locked = false;//the board is unlocked and cards can be used.
 
   }
 
@@ -90,35 +89,35 @@
 
   function Pause() { //pauses timer. Later have it so you are unable to move cards
 
-    start.removeEventListener("click", Pause);
+    start.removeEventListener("click", Pause);//changes pause button to start button
     start.addEventListener("click", Start);
     start.value = "Start";
 
-    locked = true;
+    locked = true; //keeos cards from being used during pause
 
     start.innerText = "Start";
     start.classList.add("start");
     start.classList.remove("pause");
-    clearInterval(interval);
+    clearInterval(interval); // the actual pause.
     interval = -1;
   }
 
 
 
-  document.getElementById("reset").addEventListener("click", () => {
+  document.getElementById("reset").addEventListener("click", () => {//reset
 
     Pause(); //runs pause function
     difficultyOn(); //let's select difficulty happen
     document.getElementById("start").removeEventListener("click", Start);
 
-    if (isMori === true) {
+    if (isMori === true) {//if memento mori difficulty is selected it resets the time accordingly
       moriTime = 120;
       minutes = 2;
       seconds = 0;
       seconds = seconds < 10 ? '0' + seconds : seconds;
       timer.innerText = `${minutes}:${seconds}`;
 
-    } else {
+    } else {//if not memento mori then it resets time to 0:00.
       completeTime = 0;
       minutes = 0;
       seconds = 0;
@@ -126,7 +125,7 @@
       timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
     }
 
-    timer.style.display = "none";
+    timer.style.display = "none"; //removes timer from screen.
 
     resetCards();
     locked = true;
@@ -233,13 +232,13 @@
   }
 
 
-  function difficultyOff() {
+  function difficultyOff() { // removes event listeners for difficulty. Used in start function
     easyMode.removeEventListener("click", easyOn);
     mediumMode.removeEventListener("click", mediumOn);
     hardMode.removeEventListener("click", hardOn);
   };
 
-  function difficultyOn() {
+  function difficultyOn() {// adds event listeners for difficulty. Used in reset.
     easyMode.addEventListener("click", easyOn);
     mediumMode.addEventListener("click", mediumOn);
     hardMode.addEventListener("click", hardOn);
