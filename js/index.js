@@ -134,7 +134,7 @@
     }
 
     timer.style.display = "none"; //removes timer from screen.
-    checkBox.innerText = "Remove Time Limit";
+    checkBox.innerText = "Remove Timer";
     removeTime.style.visibility = "visible";
 
     resetCards();
