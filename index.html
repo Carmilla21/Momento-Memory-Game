@@ -1,79 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <title>Momento</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="timer"></div>
-      <div class="dark">
-        Choose your difficulty <button class="easy">Memory - Easy</button>
-        <button class="medium">Momento - Medium</button
-        ><button class="hard">Momento Mori - Hard</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="index.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase&display=swap" rel="stylesheet">
+  <title>Momento</title>
+</head>
+
+<body>
+  <div class="container" id="difficulty">
+    <div class="dark">
+      <h1>
+        Choose your difficulty</h1>
+      <div id="difficultyButtons"><button id="easy" class="difficulty">Memory - Easy</button>
+        <button id="medium" class="difficulty">Momento - Medium</button><button id="hard" class="difficulty">Momento
+          Mori - Hard</button>
       </div>
     </div>
+  </div>
 
-    <div class="game-container">
-      <div class="card easyCard" data-card-pair="1">
-        <img src="./assets/back_option_2.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card easyCard" data-card-pair="1">
-        <img src="./assets/back_option_2.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card easyCard" data-card-pair="2">
-        <img src="./assets/stand_in_1.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card easyCard" data-card-pair="2">
-        <img src="./assets/stand_in_1.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card mediumCard" data-card-pair="3">
-        <img src="./assets/stand_in_2.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card mediumCard" data-card-pair="3">
-        <img src="./assets/stand_in_2.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card mediumCard" data-card-pair="4">
-        <img src="./assets/stand_in_3.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card mediumCard" data-card-pair="4">
-        <img src="./assets/stand_in_3.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card hardCard" data-card-pair="5">
-        <img src="./assets/stand_in_4.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card hardCard" data-card-pair="5">
-        <img src="./assets/stand_in_4.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card hardCard" data-card-pair="6">
-        <img src="./assets/stand_in_5.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
-      <div class="card hardCard" data-card-pair="6">
-        <img src="./assets/stand_in_5.jpg" alt="" class="front" />
-        <img src="./assets/back_option_1.jpg" alt="" class="back" />
-      </div>
+  <div class="game-container">
+    <div class="card easyCard" data-card-pair="1">
+      <img src="./assets/back_option_2.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
     </div>
-
-    <div class="container">
-      <button id="start" class="start">Start</button>
-      <button id="reset">Reset</button>
+    <div class="card easyCard" data-card-pair="1">
+      <img src="./assets/back_option_2.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
     </div>
+    <div class="card easyCard" data-card-pair="2">
+      <img src="./assets/stand_in_1.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card easyCard" data-card-pair="2">
+      <img src="./assets/stand_in_1.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card mediumCard" data-card-pair="3">
+      <img src="./assets/stand_in_2.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card mediumCard" data-card-pair="3">
+      <img src="./assets/stand_in_2.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card mediumCard" data-card-pair="4">
+      <img src="./assets/stand_in_3.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card mediumCard" data-card-pair="4">
+      <img src="./assets/stand_in_3.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card hardCard" data-card-pair="5">
+      <img src="./assets/stand_in_4.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card hardCard" data-card-pair="5">
+      <img src="./assets/stand_in_4.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card hardCard" data-card-pair="6">
+      <img src="./assets/stand_in_5.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+    <div class="card hardCard" data-card-pair="6">
+      <img src="./assets/stand_in_5.jpg" alt="" class="front" />
+      <img src="./assets/back_option_1.jpg" alt="" class="back" />
+    </div>
+  </div>
 
-    <script src="./js/index.js"></script>
-  </body>
+  <div class="container" id="timebutton">
+    <button id="start" class="start" type="submit">Start</button>
+    <button id="reset">Reset</button>
+  </div>
+  <div class="timer"></div>
+
+  <script src="./js/index.js"></script>
+</body>
+
 </html>

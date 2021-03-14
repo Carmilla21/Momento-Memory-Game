@@ -1,15 +1,23 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: Cormorant Unicase;
 }
 
 .dark {
   color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+
 body {
   height: 100vh;
   display: flex;
-  background-image: url("./assets/IMG_0107\ \(1\).jpg");
+  flex-direction: column;
+  background-image: url("./assets/vincent-guth-vxVZzpk6PHM-unsplash.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -31,6 +39,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: -15px 15px 20px rgba(0, 0, 0, 0.5);
 
 }
 .card {
@@ -70,6 +79,70 @@ body {
   transform: rotateY(180deg);
 }
 
-.container {
-  height:10%;
+ 
+
+#difficulty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:20%;
+}
+
+#timebutton {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: calc(100% - 75px);
+  position:absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.timer {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+  top: calc(50% + 50px);
+  font-size: 100px;
+}
+
+#start {
+  background-color: transparent;
+  cursor:pointer;
+  color: white;
+  border-radius: 15px;
+  height:20px;
+  width: 50px;
+  border:none;
+}
+
+#reset {
+  background-color: transparent;
+  cursor:pointer;
+  color: white;
+  border-radius: 15px;
+  height:20px;
+  width: 50px;
+  border:none;
+
+}
+
+.difficulty {
+  background-color: transparent;
+  cursor:pointer;
+  color: white;
+  border-radius: 15px;
+  border:none;
+}
+
+#difficultyButtons {
+  height: calc(50% - 25px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 }
