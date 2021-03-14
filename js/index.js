@@ -8,18 +8,17 @@
   let isMori = false;
   const timer = document.querySelector(".timer");
 
-
-  function timeCountUp() { //displays timer in 0:00 format and counts up
+  function timeCountUp() {
+    //displays timer in 0:00 format and counts up
     let minutes = Math.floor(completeTime / 60);
     let seconds = completeTime % 60;
 
-    seconds = seconds < 10 ? '0' + seconds : seconds;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
     timer.innerText = `${minutes}:${seconds}`;
 
     completeTime++;
   }
-
 
   function timeCountDown() { //starts at 2 and counts down
     let minutes = Math.floor(moriTime / 60);
@@ -47,8 +46,7 @@
     }
   });
 
-
-
+  
   function Start() {//starts timer. Later add allowance to move cards
     if (isMori === true) { //if memento mori difficulty selected counts down, otherwise countup
       interval = setInterval(timeCountDown, 1000);
@@ -79,9 +77,8 @@
 
   }
 
-
-
   function Pause() { //pauses timer. Later have it so you are unable to move cards
+
     start.removeEventListener("click", Pause);
     start.addEventListener("click", Start);
     start.value = "Start";
@@ -100,6 +97,7 @@
 
     Pause(); //runs pause function
 
+
     if (isMori === true) {
       moriTime = 120;
       minutes = 2;
@@ -114,17 +112,28 @@
       seconds = seconds < 10 ? '0' + seconds : seconds;
       timer.innerText = `${minutes}:${seconds}`;//resets timer to 0
     }
+    
+    resetCards();
+    locked = true;
+    allOff();
 
+    cards.forEach((card) => {
+      if (!card.listen) {
+        card.addEventListener("click", flipCard);
+        card.setAttribute("listenter", "true");
+      }
+    });
+    shuffle();
   });
-
 
 
   const cards = document.querySelectorAll(".card");
 
   let hasFlippedCard = false;
-  let locked = false;
+  let locked = true;
   let firstCard = null;
   let secondCard = null;
+
   /**
    * Function will add the flip class to element
    */
@@ -177,12 +186,14 @@
   }
 
   //Shuffles the cards
-  (function shuffle() {
+  function shuffle() {
     cards.forEach((card) => {
       let ramdomPos = Math.floor(Math.random() * 12);
       card.style.order = ramdomPos;
     });
-  })();
+  }
+
+  shuffle();
 
   //Reset card variables
   function resetCards() {
@@ -190,13 +201,23 @@
     [firstCard, secondCard] = [null, null];
   }
 
-  //Easy mode. Reveals six cards to play with
   let easyMode = document.querySelector(".easy");
   easyMode.addEventListener("click", easyOn);
   let easyCards = document.querySelectorAll(".easyCard");
   let mediumCards = document.querySelectorAll(".mediumCard");
   let hardCards = document.querySelectorAll(".hardCard");
 
+  function allOff() {
+    easyCards.forEach((card) => (card.style.display = "none"));
+    mediumCards.forEach((card) => (card.style.display = "none"));
+    hardCards.forEach((card) => (card.style.display = "none"));
+    cards.forEach((card) => {
+      card.style.visibility = "visible";
+      card.classList.remove("flip");
+    });
+  }
+
+  //Easy mode. Reveals six cards to play with
   function easyOn() {
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "none"));
@@ -225,5 +246,8 @@
     isMori = true;
   }
   //Adds event listener to all cards to flip
-  cards.forEach((card) => card.addEventListener("click", flipCard));
+  cards.forEach((card) => {
+    card.addEventListener("click", flipCard);
+    card.setAttribute("listenter", "true");
+  });
 })();
