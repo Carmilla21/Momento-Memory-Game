@@ -43,6 +43,30 @@
     }
   }
 
+  function easyTime() {
+    isMori = false;
+    document.getElementById("start").addEventListener("click", Start);
+    removeTime.style.visibility = "visible";
+
+    completeTime = 0;
+    minutes = 0;
+    seconds = 0;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    timer.innerText = `${minutes}:${seconds}`;
+  }
+
+  function hardTime() {
+    isMori = true;
+    document.getElementById("start").addEventListener("click", Start);
+    removeTime.style.visibility = "hidden";
+
+    moriTime = 120;
+    minutes = 2;
+    seconds = 0;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    timer.innerText = `${minutes}:${seconds}`;
+  }
+
   function loseTime() {
     //it's under "unFlip" for now
     for (i = 0; i < 10; i++) {
@@ -121,22 +145,6 @@
       difficultyOn(); //let's select difficulty happen
       document.getElementById("start").removeEventListener("click", Start);
 
-      if (isMori === true) {
-        //if memento mori difficulty is selected it resets the time accordingly
-        moriTime = 120;
-        minutes = 2;
-        seconds = 0;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        timer.innerText = `${minutes}:${seconds}`;
-      } else {
-        //if not memento mori then it resets time to 0:00.
-        completeTime = 0;
-        minutes = 0;
-        seconds = 0;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        timer.innerText = `${minutes}:${seconds}`; //resets timer to 0
-      }
-
       timer.style.display = "none"; //removes timer from screen.
       checkBox.innerText = "Remove Timer";
       removeTime.style.visibility = "visible";
@@ -186,6 +194,7 @@
 
   //Checks if two cards match
   function matched() {
+    locked = true;
     let matched = firstCard.dataset.cardPair === secondCard.dataset.cardPair;
     matched ? disableCards() : unFlip();
   }
@@ -272,9 +281,8 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
-    isMori = false;
-    document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.visibility = "visible";
+
+    easyTime();
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -285,9 +293,8 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "none"));
-    isMori = false;
-    document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.visibility = "visible";
+
+    easyTime();
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector("#hard");
@@ -297,9 +304,8 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "block"));
-    isMori = true;
-    document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.visibility = "hidden";
+
+    hardTime();
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => {
