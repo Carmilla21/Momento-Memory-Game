@@ -37,7 +37,7 @@
     if (moriTime < 0) {
       //stops the clock at 0:00. Need to apply lose condition.
       clearInterval(interval);
-      document.getElementById("endOfMori").style.display = "block";
+      document.getElementById("endOfMori").style.display = "flex";
     }
   }
 

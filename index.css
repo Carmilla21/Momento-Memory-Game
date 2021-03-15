@@ -129,7 +129,7 @@ body {
   border:none;
 }
 
-.reset {
+#reset {
   background-color: transparent;
   cursor:pointer;
   color: #d2e6ff;
@@ -138,6 +138,18 @@ body {
   width: 50px;
   border:none;
 
+}
+
+#finalReset {
+  background-color: transparent;
+  cursor:pointer;
+  color: rgba(231, 217, 217, 0.6);
+  border-radius: 15px;
+  height:20px;
+  width: 50px;
+  border:none;
+  font-size:35px;
+  align-self: center;
 }
 
 .difficulty {
@@ -185,7 +197,13 @@ body {
 #endOfMori{
   display: none;
   z-index: 110000;
+  font-size:50px;
+  margin:auto;
+  flex-direction: column;
+
 }
+
+
 @media (min-width: 1024px) {
 
   .difficulty {
@@ -203,7 +221,7 @@ body {
     left: calc(10% - 5px);
   }
   
-  .reset {
+  #reset {
     font-size:35px;
     left: calc(-10% - 5px);
     color:#26323f;
@@ -212,6 +230,12 @@ body {
 
   h1 {
     font-size: 75px;
+  }
+
+  #difficultyButtons {
+    flex-direction: row;
+    width: calc(75% - 10px);
+    top:0px;
   }
 
 }
