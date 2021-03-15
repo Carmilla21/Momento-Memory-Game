@@ -32,14 +32,12 @@
     moriTime--; //increments so seconds pass.
 
     //as timer decreases the screen will become red
-    fader.style.opacity = (120 - moriTime) * 0.008333;
+    fader.style.opacity = (110 - moriTime) * 0.008333;
 
     if (moriTime < 0) {
       //stops the clock at 0:00. Need to apply lose condition.
       clearInterval(interval);
-
-      document.getElementById("endOfMori").style.display = "flex";
-
+      document.getElementById("endOfMori").style.display = "block";
     }
   }
 
@@ -186,6 +184,7 @@
 
   //Checks if two cards match
   function matched() {
+    locked = true;
     let matched = firstCard.dataset.cardPair === secondCard.dataset.cardPair;
     matched ? disableCards() : unFlip();
   }
