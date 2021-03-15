@@ -238,6 +238,16 @@ body {
     top:0px;
   }
 
+  
+
 }
+
+@media (max-width: 425px) {
+  #endOfMori {
+    font-size:30px;
+  }
+}
+
+
 
 
