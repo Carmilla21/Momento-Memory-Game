@@ -140,6 +140,18 @@ body {
 
 }
 
+#finalReset {
+  background-color: transparent;
+  cursor:pointer;
+  color: rgba(231, 217, 217, 0.6);
+  border-radius: 15px;
+  height:20px;
+  width: 50px;
+  border:none;
+  font-size:35px;
+  align-self: center;
+}
+
 .difficulty {
   background-color: transparent;
   cursor:pointer;
@@ -185,7 +197,13 @@ body {
 #endOfMori{
   display: none;
   z-index: 110000;
+
+  font-size:50px;
+  margin:auto;
+  flex-direction: column;
+
 }
+
 @media (min-width: 1024px) {
 
   .difficulty {
