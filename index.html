@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase&display=swap"
+      rel="stylesheet"
+    />
+    <title>Momento</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="index.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase&display=swap" rel="stylesheet">
-  <title>Momento</title>
-</head>
-
-<body>
-  <div class="container" id="difficulty">
-    <div class="dark">
-      <h1>
-        Choose your difficulty</h1>
-      <div id="difficultyButtons"><button id="easy" class="difficulty">Memory - Easy</button>
-        <button id="medium" class="difficulty">Momento - Medium</button><button id="hard" class="difficulty">
-          Momento
-          Mori - Hard</button>
+  <body>
+    <div class="container" id="difficulty">
+      <div class="dark">
+        <h1>Choose your difficulty</h1>
+        <div id="difficultyButtons">
+          <button id="easy" class="difficulty">Memory - Easy</button>
+          <button id="medium" class="difficulty">Momento - Medium</button
+          ><button id="hard" class="difficulty">Momento Mori - Hard</button>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="game-container">
     <div class="card easyCard" data-card-pair="1">
@@ -72,20 +73,26 @@
     <div class="card hardCard" data-card-pair="6">
       <img src="./assets/stand_in_5.jpg" alt="" class="front" />
       <img src="./assets/pawel-czerwinski-bX9B9c-YasY-unsplash.png" alt="" class="back" />
+
     </div>
-  </div>
 
-  <div class="container" id="timebutton">
-    <button id="start" class="start subButton">Start</button>
-    <div id="remove">
-      <input type="checkbox" id="noTimer" name="Remove Timer">
-      <label class="dark1" for="Remove Timer">Remove Timer</label>
+    <div class="container" id="timebutton">
+      <button id="start" class="start subButton">Start</button>
+      <div id="remove">
+        <input type="checkbox" id="noTimer" name="Remove Timer" />
+        <label class="dark1" for="Remove Timer">Remove Timer</label>
+      </div>
+      <button class="reset" class="subButton">Reset</button>
     </div>
-    <button id="reset" class="subButton">Reset</button>
-  </div>
-  <div id="timer"></div>
+    <div id="timer"></div>
 
-  <script src="./js/index.js"></script>
-</body>
+    <div class="fader"></div>
 
+    <div id="endOfMori">
+      Your Time Has Come to Pass
+      <button class="reset" class="subButton">Reset</button>
+    </div>
+
+    <script src="./js/index.js"></script>
+  </body>
 </html>
