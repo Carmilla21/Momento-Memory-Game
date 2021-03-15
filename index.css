@@ -129,7 +129,7 @@ body {
   border:none;
 }
 
-#reset {
+.reset {
   background-color: transparent;
   cursor:pointer;
   color: #d2e6ff;
@@ -197,12 +197,12 @@ body {
 #endOfMori{
   display: none;
   z-index: 110000;
+
   font-size:50px;
   margin:auto;
   flex-direction: column;
 
 }
-
 
 @media (min-width: 1024px) {
 
@@ -221,7 +221,7 @@ body {
     left: calc(10% - 5px);
   }
   
-  #reset {
+  .reset {
     font-size:35px;
     left: calc(-10% - 5px);
     color:#26323f;
