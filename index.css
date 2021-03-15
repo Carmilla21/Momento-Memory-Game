@@ -196,6 +196,12 @@ body {
     font-size: 75px;
   }
 
+  #difficultyButtons {
+    flex-direction: row;
+    width: calc(75% - 10px);
+    top:0px;
+  }
+
 }
 
 
