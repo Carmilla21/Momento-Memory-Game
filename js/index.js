@@ -7,6 +7,8 @@
   const timer = document.querySelector("#timer");
   let checkBox = document.querySelector("label");
   let fader = document.querySelector(".fader");
+  const heartBeat = document.getElementById("heartSlow");
+  const flatline = document.getElementById("flatline");
 
   function timeCountUp() {
     //displays timer in 0:00 format and counts up
@@ -33,10 +35,26 @@
 
     //as timer decreases the screen will become red
     fader.style.opacity = (110 - moriTime) * 0.008333;
+    //Hard mode audio contols
+
+    if (moriTime > 90) {
+      heartBeat.play();
+      heartBeat.loop = true;
+    } else if (moriTime > 60) {
+      heartBeat.playbackRate = 1.2;
+    } else if (moriTime > 30) {
+      heartBeat.playbackRate = 1.6;
+    } else if (moriTime > 10) {
+      heartBeat.playbackRate = 2;
+    } else if (moriTime > 0) {
+      heartBeat.playbackRate = 2.5;
+    }
 
     if (moriTime < 0) {
       //stops the clock at 0:00. Need to apply lose condition.
       clearInterval(interval);
+      heartBeat.pause();
+      heartBeat.playbackRate = 1;
       document.getElementById("endOfMori").style.display = "block";
     }
   }
@@ -152,6 +170,7 @@
       shuffle();
       fader.style.opacity = 0;
       document.getElementById("endOfMori").style.display = "none";
+      flatline.pause();
     });
   });
 
