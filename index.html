@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase&display=swap"
+      rel="stylesheet"
+    />
+    <title>Momento</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="index.css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase&display=swap" rel="stylesheet" />
-  <title>Momento</title>
-</head>
-
-
-<body>
-  <div class="container" id="difficulty">
-    <div class="dark">
-      <h1>Choose your difficulty</h1>
-      <div id="difficultyButtons">
-        <button id="easy" class="difficulty">Memory - Easy</button>
-        <button id="medium" class="difficulty">Momento - Medium</button><button id="hard" class="difficulty">Momento
-          Mori - Hard</button>
-
+  <body>
+    <div class="container" id="difficulty">
+      <div class="dark">
+        <h1>Choose your difficulty</h1>
+        <div id="difficultyButtons">
+          <button id="easy" class="difficulty">Memory - Easy</button>
+          <button id="medium" class="difficulty">Momento - Medium</button
+          ><button id="hard" class="difficulty">Momento Mori - Hard</button>
+        </div>
       </div>
     </div>
-  </div>
 
     <div class="game-container">
       <div class="card easyCard" data-card-pair="1">
@@ -133,7 +133,6 @@
     </div>
     <div id="timer"></div>
 
-
     <div class="fader"></div>
 
     <div id="endOfMori">
@@ -141,8 +140,8 @@
       <button class="reset" id="finalReset" class="subButton">Reset</button>
     </div>
 
+    <audio id="heartSlow" src="./assets/audio/heartbeat-01a.mp3"></audio>
 
     <script src="./js/index.js"></script>
   </body>
 </html>
-
