@@ -321,9 +321,22 @@
   cards.forEach((card) => {
     card.addEventListener("click", flipCard);
     card.addEventListener("keydown", event => {
-      if (event.key === "Enter") {
-        flipCard;
-        console.log("flip");//it's logging flip, why won't the function work
+      if (event.key === "Enter") { //temporary fix. Tried changing flipcard and it broke horrifically.
+
+        if (locked) return;
+        if (card === firstCard) return;
+
+        card.classList.add("flip");
+
+        if (!hasFlippedCard) {
+          hasFlippedCard = true;
+          firstCard = card;
+          return;
+        }
+
+        secondCard = card;
+
+        matched();
       }
     });
     card.setAttribute("listener", "true");
