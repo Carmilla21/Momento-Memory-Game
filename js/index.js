@@ -200,6 +200,7 @@
     matched();
   }
 
+
   //Checks if two cards match
   function matched() {
     locked = true;
@@ -239,9 +240,9 @@
   //Shuffles the cards
   function shuffle() {
     cards.forEach((card) => {
-      let ramdomPos = Math.floor(Math.random() * 12);
-      card.style.order = ramdomPos;
-      card.tabIndex = ramdomPos.toString();
+      let randomPos = Math.floor(Math.random() * 12);
+      card.style.order = randomPos;
+      card.tabIndex = randomPos.toString();
     });
   }
 
@@ -319,7 +320,13 @@
   //Adds event listener to all cards to flip
   cards.forEach((card) => {
     card.addEventListener("click", flipCard);
-    card.setAttribute("listenter", "true");
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        flipCard;
+        console.log("flip");//it's logging flip, why won't the function work
+      }
+    });
+    card.setAttribute("listener", "true");
   });
 
 
