@@ -45,7 +45,6 @@
     }
   }
 
-
   function easyTime() {//sets timer for easy and medium
     isMori = false;
     document.getElementById("start").addEventListener("click", Start);
@@ -242,6 +241,7 @@
     cards.forEach((card) => {
       let ramdomPos = Math.floor(Math.random() * 12);
       card.style.order = ramdomPos;
+      card.tabIndex = ramdomPos.toString();
     });
   }
 
@@ -321,4 +321,6 @@
     card.addEventListener("click", flipCard);
     card.setAttribute("listenter", "true");
   });
+
+
 })();
