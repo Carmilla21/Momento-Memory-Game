@@ -36,11 +36,11 @@
     //as timer decreases the screen will become red
     fader.style.opacity = (110 - moriTime) * 0.008333;
 
-    if (moriTime <= 0) {
-      //stops the clock at 0:00. Need to apply lose condition.
+    if (moriTime < 0) {
+      //stops the clock at 0:00. 
       Pause();
 
-      document.getElementById("endOfMori").style.display = "flex";
+      document.getElementById("endOfMori").style.display = "flex";//lose condition
 
     }
   }
@@ -72,11 +72,13 @@
 
 
   function loseTime() {
-    //it's under "unFlip" for now
-    for (i = 0; i < 10; i++) {
-      timeCountDown();
-    }
-  }
+    //it's under "unFlip"=
+    if (moriTime >= 10) {
+      for (i = 0; i < 10; i++) {//loops 10 times to reduce seconds by 10 in mori mode
+        timeCountDown();
+      };
+    };
+  };
 
 
   let removeTime = document.getElementById("noTimer");
@@ -109,6 +111,7 @@
       start.classList.remove("start");
       start.classList.remove("pause");
       start.classList.add("mementoMori");
+
 
       checkBox.innerText = "Your Fate is Sealed";
     } else {
@@ -342,5 +345,8 @@
     card.setAttribute("listener", "true");
   });
 
+  function win() {
+
+  };
 
 })();
