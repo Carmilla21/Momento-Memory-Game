@@ -8,6 +8,7 @@
   let checkBox = document.querySelector("label");
   let fader = document.querySelector(".fader");
 
+
   function timeCountUp() {
     //displays timer in 0:00 format and counts up
     let minutes = Math.floor(completeTime / 60); //turns seconds to minutes
@@ -19,6 +20,7 @@
 
     completeTime++; //increments so seconds add up.
   }
+
 
   function timeCountDown() {
     //starts at 2 and counts down
@@ -32,18 +34,19 @@
     moriTime--; //increments so seconds pass.
 
     //as timer decreases the screen will become red
-    fader.style.opacity = (120 - moriTime) * 0.008333;
+    fader.style.opacity = (110 - moriTime) * 0.008333;
 
-    if (moriTime < 0) {
+    if (moriTime <= 0) {
       //stops the clock at 0:00. Need to apply lose condition.
-      clearInterval(interval);
+      Pause();
 
       document.getElementById("endOfMori").style.display = "flex";
 
     }
   }
 
-  function easyTime() {
+
+  function easyTime() {//sets timer for easy and medium
     isMori = false;
     document.getElementById("start").addEventListener("click", Start);
     removeTime.style.visibility = "visible";
@@ -55,7 +58,8 @@
     timer.innerText = `${minutes}:${seconds}`;
   }
 
-  function hardTime() {
+
+  function hardTime() {//sets timer for mori mode
     isMori = true;
     document.getElementById("start").addEventListener("click", Start);
     removeTime.style.visibility = "hidden";
@@ -67,12 +71,14 @@
     timer.innerText = `${minutes}:${seconds}`;
   }
 
+
   function loseTime() {
     //it's under "unFlip" for now
     for (i = 0; i < 10; i++) {
       timeCountDown();
     }
   }
+
 
   let removeTime = document.getElementById("noTimer");
   removeTime.addEventListener("change", () => {
@@ -83,6 +89,7 @@
       timer.style.display = "flex";
     }
   });
+
 
   function Start() {
     //starts timer.
@@ -120,6 +127,7 @@
 
     locked = false; //the board is unlocked and cards can be used.
   }
+
 
   function Pause() {
     //pauses timer. Later have it so you are unable to move cards
@@ -164,6 +172,7 @@
       document.getElementById("endOfMori").style.display = "none";
     });
   });
+
 
   const cards = document.querySelectorAll(".card");
 
