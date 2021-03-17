@@ -10,7 +10,6 @@
   const heartBeat = document.getElementById("heartSlow");
   const flatline = document.getElementById("flatline");
 
-
   function timeCountUp() {
     //displays timer in 0:00 format and counts up
     let minutes = Math.floor(completeTime / 60); //turns seconds to minutes
@@ -22,7 +21,6 @@
 
     completeTime++; //increments so seconds add up.
   }
-
 
   function timeCountDown() {
     //starts at 2 and counts down
@@ -38,7 +36,7 @@
     //as timer decreases the screen will become red
     fader.style.opacity = (110 - moriTime) * 0.008333;
 
-     //Hard mode audio contols
+    //Hard mode audio contols
 
     if (moriTime > 90) {
       heartBeat.play();
@@ -53,17 +51,17 @@
       heartBeat.playbackRate = 2.5;
     }
     if (moriTime < 0) {
-      //stops the clock at 0:00. 
+      //stops the clock at 0:00.
       Pause();
-       heartBeat.pause();
+      heartBeat.pause();
       heartBeat.playbackRate = 1;
 
-      document.getElementById("endOfMori").style.display = "flex";//lose condition
-
+      document.getElementById("endOfMori").style.display = "flex"; //lose condition
     }
   }
 
-  function easyTime() {//sets timer for easy and medium
+  function easyTime() {
+    //sets timer for easy and medium
     isMori = false;
     document.getElementById("start").addEventListener("click", Start);
     removeTime.style.visibility = "visible";
@@ -75,8 +73,8 @@
     timer.textContent = `${minutes}:${seconds}`;
   }
 
-
-  function hardTime() {//sets timer for mori mode
+  function hardTime() {
+    //sets timer for mori mode
     isMori = true;
     document.getElementById("start").addEventListener("click", Start);
     removeTime.style.visibility = "hidden";
@@ -97,12 +95,12 @@
         timer.classList.add("normalText");
         timer.classList.remove("timeDilation");
       }, 1000);
-      for (i = 0; i < 10; i++) {//loops 10 times to reduce seconds by 10 in mori mode
+      for (i = 0; i < 10; i++) {
+        //loops 10 times to reduce seconds by 10 in mori mode
         timeCountDown();
-      };
+      }
     }
-  };
-
+  }
 
   const timerContainer = document.querySelector("#timer");
 
@@ -115,7 +113,6 @@
       timerContainer.style.display = "flex";
     }
   });
-
 
   function Start() {
     //starts timer.
@@ -137,7 +134,6 @@
       start.classList.remove("pause");
       start.classList.add("mementoMori");
 
-
       checkBox.innerText = "Your Fate is Sealed";
     } else {
       //if any difficulty other then memento mori is selected.
@@ -154,7 +150,6 @@
 
     locked = false; //the board is unlocked and cards can be used.
   }
-
 
   function Pause() {
     //pauses timer. Later have it so you are unable to move cards
@@ -197,10 +192,8 @@
       shuffle();
       fader.style.opacity = 0;
       document.getElementById("endOfMori").style.display = "none";
-      flatline.pause();
     });
   });
-
 
   const cards = document.querySelectorAll(".card");
 
@@ -228,7 +221,6 @@
 
     matched();
   }
-
 
   //Checks if two cards match
   function matched() {
@@ -349,8 +341,9 @@
   //Adds event listener to all cards to flip
   cards.forEach((card) => {
     card.addEventListener("click", flipCard);
-    card.addEventListener("keydown", event => {
-      if (event.key === "Enter") { //temporary fix. Tried changing flipcard and it broke horrifically.
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        //temporary fix. Tried changing flipcard and it broke horrifically.
 
         if (locked) return;
         if (card === firstCard) return;
@@ -370,6 +363,4 @@
     });
     card.setAttribute("listener", "true");
   });
-
-
 })();
