@@ -387,6 +387,7 @@
     //if cards are gone do this(maybe do this if loop outside of the function in start)
     Pause();
 
+
     document.getElementById("endOfMori").style.display = "flex";
 
     if (isMori) {
