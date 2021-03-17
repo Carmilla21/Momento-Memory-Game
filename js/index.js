@@ -25,6 +25,10 @@
     completeTime++; // increments so seconds add up.
   }
 
+
+
+
+
   function timeCountDown() {
     // starts at 2 and counts down
     const minutes = Math.floor(moriTime / 60); // same as above just different starting value.
@@ -63,6 +67,10 @@
     }
   }
 
+
+
+
+
   function easyTime() {
     // sets timer for easy and medium
     isMori = false;
@@ -76,6 +84,10 @@
     timer.textContent = `${minutes}:${seconds}`;
   }
 
+
+
+
+
   function hardTime() {
     // sets timer for mori mode
     isMori = true;
@@ -88,6 +100,10 @@
     seconds = seconds < 10 ? `0${seconds}` : seconds;
     timer.textContent = `${minutes}:${seconds}`;
   }
+
+
+
+
 
   function loseTime() {
     // it's under "unFlip"=
@@ -105,6 +121,10 @@
     }
   }
 
+
+
+
+
   const timerContainer = document.querySelector('#timer');
 
   let removeTime = document.getElementById('noTimer');
@@ -116,6 +136,9 @@
       timerContainer.style.display = 'flex';
     }
   });
+
+
+
 
   function Start() {
     // starts timer.
@@ -154,6 +177,9 @@
     locked = false; // the board is unlocked and cards can be used.
   }
 
+
+
+
   function Pause() {
     // pauses timer. Later have it so you are unable to move cards
 
@@ -169,6 +195,10 @@
     clearInterval(interval); // the actual pause.
     interval = -1;
   }
+
+
+
+
 
   document.querySelectorAll('.reset').forEach((reset) => {
     reset.addEventListener('click', () => {
@@ -204,6 +234,10 @@
     });
   });
 
+
+
+
+
   const cards = document.querySelectorAll('.card');
 
   let hasFlippedCard = false;
@@ -231,6 +265,9 @@
     matched();
   }
 
+
+
+
   // Checks if two cards match
   function matched() {
     locked = true;
@@ -238,6 +275,9 @@
     const matched = firstCard.dataset.cardPair === secondCard.dataset.cardPair;
     matched ? disableCards() : unFlip();
   }
+
+
+
 
   // disables attemted cards till
   function disableCards() {
@@ -255,6 +295,9 @@
     }, 1500);
   }
 
+
+
+
   // Unflips mismatched cards after 1.5sec
   function unFlip() {
     locked = true;
@@ -271,6 +314,9 @@
     }, 1500);
   }
 
+
+
+
   // Shuffles the cards
   function shuffle() {
     cards.forEach((card) => {
@@ -280,13 +326,22 @@
     });
   }
 
+
+
+
   shuffle();
+
+
+
 
   // Reset card variables
   function resetCards() {
     [hasFlippedCard, locked] = [false, false];
     [firstCard, secondCard] = [null, null];
   }
+
+
+
 
   // Easy mode. Reveals six cards to play with
   const easyMode = document.querySelector('#easy');
@@ -306,6 +361,9 @@
     });
   }
 
+
+
+
   function difficultyOff() {
     // removes event listeners for difficulty. Used in start function
     easyMode.removeEventListener('click', easyOn);
@@ -313,12 +371,18 @@
     hardMode.removeEventListener('click', hardOn);
   }
 
+
+
+
   function difficultyOn() {
     // adds event listeners for difficulty. Used in reset.
     easyMode.addEventListener('click', easyOn);
     mediumMode.addEventListener('click', mediumOn);
     hardMode.addEventListener('click', hardOn);
   }
+
+
+
 
   // Easy mode. Reveals six cards to play with
   function easyOn() {
@@ -330,6 +394,9 @@
 
     easyTime();
   }
+
+
+
 
   // Medium mode. Reveals 8 cards to play with
   let mediumMode = document.querySelector('#medium');
@@ -344,6 +411,10 @@
 
     easyTime();
   }
+
+
+
+
   // Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector('#hard');
   hardMode.addEventListener('click', hardOn);
@@ -355,6 +426,10 @@
 
     hardTime();
   }
+
+
+
+
   // Adds event listener to all cards to flip
   cards.forEach((card) => {
     card.addEventListener('click', flipCard);
@@ -381,6 +456,9 @@
     card.setAttribute('listener', 'true');
   });
 
+
+
+
   function onWin() { // what happens on win
     // if cards are gone do this(maybe do this if loop outside of the function in start)
     Pause();
@@ -400,6 +478,9 @@
     // have to press reset so don't add too much
   }
 
+
+
+
   function winCheck() { // checks to see if you won.
     if (easy === true) {
       if (cardMatch === 3) {
@@ -415,4 +496,7 @@
       }
     }
   }
+
+
+
 }());
