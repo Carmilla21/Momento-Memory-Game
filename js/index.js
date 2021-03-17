@@ -9,6 +9,9 @@
   let fader = document.querySelector(".fader");
   const heartBeat = document.getElementById("heartSlow");
   let flipCount = 0;
+  let cardMatch = 0;
+  let easy = false;
+  let medium = false;
 
   function timeCountUp() {
     //displays timer in 0:00 format and counts up
@@ -135,6 +138,7 @@
       start.classList.add("mementoMori");
 
       checkBox.innerText = "Your Fate is Sealed";
+
     } else {
       //if any difficulty other then memento mori is selected.
       interval = setInterval(timeCountUp, 1000);
@@ -149,6 +153,7 @@
     }
 
     locked = false; //the board is unlocked and cards can be used.
+
   }
 
   function Pause() {
@@ -173,6 +178,8 @@
 
       Pause(); //runs pause function
       difficultyOn(); //let's select difficulty happen
+      easy = false;
+      medium = false;
       document.getElementById("start").removeEventListener("click", Start);
 
       timerContainer.style.display = "none"; //removes timer from screen.
@@ -191,6 +198,7 @@
       });
       shuffle();
       fader.style.opacity = 0;
+      cardMatch = 0;
       flipCount = 0;
       heartBeat.pause();
       heartBeat.playbackRate = 1;
@@ -237,6 +245,9 @@
   function disableCards() {
     firstCard.removeEventListener("click", flipCard);
     secondCard.removeEventListener("click", flipCard);
+
+    cardMatch++
+    winCheck();
 
     setTimeout(() => {
       firstCard.style.visibility = "hidden";
@@ -317,6 +328,8 @@
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
 
+    easy = true;
+
     easyTime();
   }
 
@@ -328,6 +341,8 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "none"));
+
+    medium = true;
 
     easyTime();
   }
@@ -367,4 +382,39 @@
     });
     card.setAttribute("listener", "true");
   });
+
+  function onWin() {//what happens on win
+    //if cards are gone do this(maybe do this if loop outside of the function in start)
+    Pause();
+
+    document.getElementById("endOfMori").style.display = "flex";
+
+    if (isMori) {
+      heartBeat.pause();
+      heartBeat.playbackRate = 1;
+
+      document.getElementById("endOfMori").innerText = `The ninth lion ate the sun. ${flipCount} flips`
+
+    } else {
+      document.getElementById("endOfMori").innerText = `You Won in ${flipCount} flips`
+    }
+
+    //have to press reset so don't add too much
+  };
+
+  function winCheck() {//checks to see if you won.
+    if (easy === true) {
+      if (cardMatch === 3) {
+        onWin();
+      }
+    } else if (medium === true) {
+      if (cardMatch === 5) {
+        onWin();
+      }
+    } else if (isMori === true) {
+      if (cardMatch === 6) {
+        onWin();
+      }
+    }
+  }
 })();
