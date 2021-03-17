@@ -73,6 +73,12 @@
   function loseTime() {
     //it's under "unFlip"=
     if (moriTime >= 10) {
+      timer.classList.add("timeDilation");
+      timer.classList.remove("normalText");
+      setTimeout(() => {
+        timer.classList.add("normalText");
+        timer.classList.remove("timeDilation");
+      }, 1000);
       for (i = 0; i < 10; i++) {//loops 10 times to reduce seconds by 10 in mori mode
         timeCountDown();
       };
@@ -235,12 +241,6 @@
 
       while (isMori === true) {
         loseTime();
-        timer.classList.add("timeDilation");
-        timer.classList.remove("normalText");
-        setTimeout(() => {
-          timer.classList.add("normalText");
-          timer.classList.remove("timeDilation");
-        }, 1000);
         break;
       }
       resetCards();
