@@ -50,8 +50,9 @@ body {
 .card {
   width: calc(25% - 55px);
   height: calc(25% - 25px);
-  margin-left: 24px;
-  margin-right: 30px;
+  margin-left: 30px;
+  margin-right: 25px;
+  margin-top: 20px;
   transform-style: preserve-3d;
   transform: scale(1);
   transition: transform 0.5s;
@@ -117,6 +118,7 @@ body {
   align-items: center;
   position: relative;
   top: calc(55% + 20px);
+  margin-top: 15px;
 }
 
 .normalText{
@@ -150,6 +152,7 @@ body {
   border-radius: 50%;
   height:20px;
   width: 50px;
+  font-size:25px;
   border:none;
 
 }
@@ -218,6 +221,9 @@ body {
 
 }
 
+h1 {
+  text-shadow: 2px 2px 4px #000000;
+}
 @media (min-width: 1024px) {
 
 
@@ -228,7 +234,7 @@ body {
 
   .card {
     width: 50px;
-    margin-left: 20px;
+    margin-left: 25px;
     margin-right: 25px;
     margin-top: 25px;
   }
@@ -243,16 +249,14 @@ body {
   
   }
 
-  #start {
-    font-size: 50px;
-    left: calc(10% - 5px);
-  }
+
   
   .reset {
-    font-size:50px;
     font-weight: bold;
-    margin-right: calc(15% - 45px);
     color:#26323f;
+    left: calc(10% - 5px);
+    font-size: 50px;
+    text-shadow: 2px 2px 15px white;
   
   }
 
@@ -273,10 +277,36 @@ body {
 
   #remove {
     font-size: 25px;
+    position:relative;
+    top: 35px;
   }
-  
+  #timebutton {
+    width: calc(80% - 10px);
+  }
 
 }
+
+@media (min-width: 768px) {
+  .reset {
+    font-weight: bold;
+    color:#26323f;
+    left: calc(10% - 5px);
+    font-size: 35px;
+    text-shadow: 2px 2px 15px white;
+    
+  }
+
+  #start {
+
+    font-size: 35px;
+  }
+
+  #timebutton {
+    width: calc(80% - 10px);
+  }
+  
+}
+
 
 @media (max-width: 425px) {
   #endOfMori {
