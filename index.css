@@ -49,7 +49,6 @@ body {
 }
 .card {
   width: calc(25% - 55px);
-
   height: calc(25% - 25px);
   margin-left: 24px;
   margin-right: 30px;
@@ -61,6 +60,9 @@ body {
   top: calc(10% - 30px);
   display: none;
 }
+
+
+
 
 .card:active {
   transform: scale(0.97);
@@ -129,19 +131,23 @@ body {
 
 #start {
   background-color: transparent;
+  text-shadow: 2px 2px 4px #000000;
   cursor:pointer;
-  color: #d2e6ff;
-  border-radius: 15px;
+  color: white;
+  border-radius: 50%;
   height:20px;
   width: 50px;
   border:none;
+  font-size:25px;
+  
+  
 }
 
 .reset {
   background-color: transparent;
   cursor:pointer;
   color: #d2e6ff;
-  border-radius: 15px;
+  border-radius: 50%;
   height:20px;
   width: 50px;
   border:none;
@@ -158,14 +164,18 @@ body {
   border:none;
   font-size:35px;
   align-self: center;
+  text-shadow: 2px 2px 35px white;
 }
 
 .difficulty {
   background-color: transparent;
   cursor:pointer;
-  color: #d2e6ff;
+  color: #081424;
   border-radius: 15px;
   border:none;
+  font-size: 20px;
+  font-family: Eagle Lake;
+  text-shadow: 2px 2px 15px white;
 
 }
 
@@ -182,11 +192,7 @@ body {
 
 #remove {
   font-size: 12px;
-}
 
-.subButton{
-  position: relative;
-  top: -35px;
 }
 
 .fader{
@@ -205,39 +211,54 @@ body {
 #endOfMori{
   display: none;
   z-index: 110000;
-
   font-size:50px;
   margin:auto;
   flex-direction: column;
+  text-shadow: 2px 2px 40px white;
 
 }
 
 @media (min-width: 1024px) {
 
+
+  .game-container {
+    width: 650px;
+    height:400px;
+  }
+
+  .card {
+    width: 50px;
+    margin-left: 20px;
+    margin-right: 25px;
+    margin-top: 25px;
+  }
+
   .difficulty {
     background-color: transparent;
     cursor:pointer;
     color: #26323f;
-    font-size:20px;
+    font-size:25px;
     border-radius: 15px;
     border:none;
   
   }
 
   #start {
-    font-size: 35px;
+    font-size: 50px;
     left: calc(10% - 5px);
   }
   
   .reset {
-    font-size:35px;
-    left: calc(-10% - 5px);
+    font-size:50px;
+    font-weight: bold;
+    margin-right: calc(15% - 45px);
     color:#26323f;
   
   }
 
   h1 {
     font-size: 75px;
+    text-shadow: 2px 2px 4px #000000
   }
 
   #difficultyButtons {
@@ -246,6 +267,13 @@ body {
     top:0px;
   }
 
+  .game-container {
+    margin-top: 20px;
+  }
+
+  #remove {
+    font-size: 25px;
+  }
   
 
 }
