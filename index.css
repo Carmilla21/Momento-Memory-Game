@@ -224,6 +224,8 @@ body {
 h1 {
   text-shadow: 2px 2px 4px #000000;
 }
+
+
 @media (min-width: 1024px) {
 
 
@@ -267,7 +269,7 @@ h1 {
 
   #difficultyButtons {
     flex-direction: row;
-    width: calc(75% - 10px);
+    width: calc(75% - 2px);
     top:0px;
   }
 
