@@ -85,7 +85,6 @@ body {
   transform: rotateY(180deg);
 }
 
- 
 
 #difficulty {
   display: flex;
@@ -108,15 +107,22 @@ body {
   transform: translate(-50%, -50%);
 }
 
-
 #timer {
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 100px;
   position: relative;
   top: calc(55% + 20px);
+}
+
+.normalText{
+  color: white;
+  font-size: 100px;
+}
+
+.timeDilation{
+  font-size: 150px;
+  color: black;
 }
 
 #start {
