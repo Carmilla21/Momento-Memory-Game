@@ -127,10 +127,11 @@ body {
   cursor:pointer;
   color: white;
   border-radius: 50%;
-  height:35px;
-  width: 55px;
+  height:20px;
+  width: 50px;
   border:none;
   font-size:25px;
+  
   
 }
 
@@ -138,7 +139,7 @@ body {
   background-color: transparent;
   cursor:pointer;
   color: #d2e6ff;
-  border-radius: 15px;
+  border-radius: 50%;
   height:20px;
   width: 50px;
   border:none;
@@ -164,8 +165,8 @@ body {
   color: #081424;
   border-radius: 15px;
   border:none;
-  font-size: 15px;
-  font-family: Cinzel Decorative;
+  font-size: 20px;
+  font-family: Eagle Lake;
   text-shadow: 2px 2px 15px white;
 
 }
@@ -183,11 +184,7 @@ body {
 
 #remove {
   font-size: 12px;
-}
 
-.subButton{
-  position: relative;
-  top: -35px;
 }
 
 .fader{
@@ -232,20 +229,21 @@ body {
     background-color: transparent;
     cursor:pointer;
     color: #26323f;
-    font-size:15px;
+    font-size:25px;
     border-radius: 15px;
     border:none;
   
   }
 
   #start {
-    font-size: 35px;
+    font-size: 50px;
     left: calc(10% - 5px);
   }
   
   .reset {
-    font-size:35px;
-    left: calc(-10% - 5px);
+    font-size:50px;
+    font-weight: bold;
+    margin-right: calc(15% - 45px);
     color:#26323f;
   
   }
@@ -263,6 +261,10 @@ body {
 
   .game-container {
     margin-top: 20px;
+  }
+
+  #remove {
+    font-size: 25px;
   }
   
 
