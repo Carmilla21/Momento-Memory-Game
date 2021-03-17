@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="index.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
   <title>Momento</title>
 </head>
 
@@ -43,11 +40,11 @@
       <img src="./assets/stand_in_1.jpg" alt="" class="front" />
       <img src="./assets/pawel-czerwinski-bX9B9c-YasY-unsplash.png" alt="" class="back" />
     </div>
-    <div class="card mediumCard" data-card-pair="3">
+    <div class="card easyCard" data-card-pair="3">
       <img src="./assets/stand_in_2.jpg" alt="" class="front" />
       <img src="./assets/pawel-czerwinski-bX9B9c-YasY-unsplash.png" alt="" class="back" />
     </div>
-    <div class="card mediumCard" data-card-pair="3">
+    <div class="card easyCard" data-card-pair="3">
       <img src="./assets/stand_in_2.jpg" alt="" class="front" />
       <img src="./assets/pawel-czerwinski-bX9B9c-YasY-unsplash.png" alt="" class="back" />
     </div>
@@ -59,11 +56,11 @@
       <img src="./assets/stand_in_3.jpg" alt="" class="front" />
       <img src="./assets/pawel-czerwinski-bX9B9c-YasY-unsplash.png" alt="" class="back" />
     </div>
-    <div class="card hardCard" data-card-pair="5">
+    <div class="card mediumCard" data-card-pair="5">
       <img src="./assets/stand_in_4.jpg" alt="" class="front" />
       <img src="./assets/pawel-czerwinski-bX9B9c-YasY-unsplash.png" alt="" class="back" />
     </div>
-    <div class="card hardCard" data-card-pair="5">
+    <div class="card mediumCard" data-card-pair="5">
       <img src="./assets/stand_in_4.jpg" alt="" class="front" />
       <img src="./assets/pawel-czerwinski-bX9B9c-YasY-unsplash.png" alt="" class="back" />
     </div>
@@ -82,10 +79,9 @@
       <input type="checkbox" id="noTimer" name="Remove Timer" />
       <label class="dark1" for="Remove Timer">Remove Timer</label>
     </div>
-    <button id="reset" class="reset subButton">Reset</button>
+    <button class="reset" class="subButton">Reset</button>
   </div>
   <div id="timer"></div>
-
 
   <div class="fader"></div>
 
@@ -93,6 +89,8 @@
     Your Time Has Come to Pass
     <button class="reset" id="finalReset" class="subButton">Reset</button>
   </div>
+
+  <audio id="heartSlow" src="./assets/audio/heartbeat-01a.mp3"></audio>
 
   <script src="./js/index.js"></script>
 </body>
