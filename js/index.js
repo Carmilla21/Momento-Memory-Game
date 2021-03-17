@@ -4,7 +4,7 @@
   let completeTime = 0; //this and moriTime are universal to keep time.
   let moriTime = 120;
   let isMori = false;
-  const timer = document.querySelector("#timer");
+  const timer = document.getElementById("timerText");
   let checkBox = document.querySelector("label");
   let fader = document.querySelector(".fader");
   const heartBeat = document.getElementById("heartSlow");
@@ -17,7 +17,7 @@
 
     seconds = seconds < 10 ? "0" + seconds : seconds; //sets timer structure
 
-    timer.innerText = `${minutes}:${seconds}`; //adds the above to make timer.
+    timer.textContent = `${minutes}:${seconds}`; //adds the above to make timer.
 
     completeTime++; //increments so seconds add up.
   }
@@ -29,12 +29,13 @@
 
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    timer.innerText = `${minutes}:${seconds}`;
+    timer.textContent = `${minutes}:${seconds}`;
 
     moriTime--; //increments so seconds pass.
 
     //as timer decreases the screen will become red
     fader.style.opacity = (110 - moriTime) * 0.008333;
+
     //Hard mode audio contols
 
     if (moriTime > 90) {
@@ -49,30 +50,67 @@
     } else if (moriTime > 0) {
       heartBeat.playbackRate = 2.5;
     }
-
     if (moriTime < 0) {
-      //stops the clock at 0:00. Need to apply lose condition.
-      clearInterval(interval);
+      //stops the clock at 0:00.
+      Pause();
       heartBeat.pause();
       heartBeat.playbackRate = 1;
-      document.getElementById("endOfMori").style.display = "block";
+
+      document.getElementById("endOfMori").style.display = "flex"; //lose condition
     }
+  }
+
+  function easyTime() {
+    //sets timer for easy and medium
+    isMori = false;
+    document.getElementById("start").addEventListener("click", Start);
+    removeTime.style.visibility = "visible";
+
+    completeTime = 0;
+    minutes = 0;
+    seconds = 0;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    timer.textContent = `${minutes}:${seconds}`;
+  }
+
+  function hardTime() {
+    //sets timer for mori mode
+    isMori = true;
+    document.getElementById("start").addEventListener("click", Start);
+    removeTime.style.visibility = "hidden";
+
+    moriTime = 120;
+    minutes = 2;
+    seconds = 0;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    timer.textContent = `${minutes}:${seconds}`;
   }
 
   function loseTime() {
-    //it's under "unFlip" for now
-    for (i = 0; i < 10; i++) {
-      timeCountDown();
+    //it's under "unFlip"=
+    if (moriTime >= 10) {
+      timer.classList.add("timeDilation");
+      timer.classList.remove("normalText");
+      setTimeout(() => {
+        timer.classList.add("normalText");
+        timer.classList.remove("timeDilation");
+      }, 1000);
+      for (i = 0; i < 10; i++) {
+        //loops 10 times to reduce seconds by 10 in mori mode
+        timeCountDown();
+      }
     }
   }
+
+  const timerContainer = document.querySelector("#timer");
 
   let removeTime = document.getElementById("noTimer");
   removeTime.addEventListener("change", () => {
     //lets the timer display or not.
     if (removeTime.checked) {
-      timer.style.display = "none";
+      timerContainer.style.display = "none";
     } else {
-      timer.style.display = "flex";
+      timerContainer.style.display = "flex";
     }
   });
 
@@ -81,7 +119,7 @@
 
     difficultyOff(); //removes ability to select difficulty until restarted.
 
-    timer.style.display = "flex"; //displays timer
+    timerContainer.style.display = "flex"; //displays timer
 
     if (isMori === true) {
       //if memento mori difficulty selected counts down, otherwise countup
@@ -137,23 +175,7 @@
       difficultyOn(); //let's select difficulty happen
       document.getElementById("start").removeEventListener("click", Start);
 
-      if (isMori === true) {
-        //if memento mori difficulty is selected it resets the time accordingly
-        moriTime = 120;
-        minutes = 2;
-        seconds = 0;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        timer.innerText = `${minutes}:${seconds}`;
-      } else {
-        //if not memento mori then it resets time to 0:00.
-        completeTime = 0;
-        minutes = 0;
-        seconds = 0;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        timer.innerText = `${minutes}:${seconds}`; //resets timer to 0
-      }
-
-      timer.style.display = "none"; //removes timer from screen.
+      timerContainer.style.display = "none"; //removes timer from screen.
       checkBox.innerText = "Remove Timer";
       removeTime.style.visibility = "visible";
 
@@ -170,7 +192,6 @@
       shuffle();
       fader.style.opacity = 0;
       document.getElementById("endOfMori").style.display = "none";
-      flatline.pause();
     });
   });
 
@@ -240,8 +261,9 @@
   //Shuffles the cards
   function shuffle() {
     cards.forEach((card) => {
-      let ramdomPos = Math.floor(Math.random() * 12);
-      card.style.order = ramdomPos;
+      let randomPos = Math.floor(Math.random() * 12);
+      card.style.order = randomPos;
+      card.tabIndex = randomPos.toString();
     });
   }
 
@@ -290,9 +312,8 @@
     easyCards.forEach((card) => (card.style.display = "flex"));
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
-    isMori = false;
-    document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.visibility = "visible";
+
+    easyTime();
   }
 
   //Medium mode. Reveals 8 cards to play with
@@ -303,9 +324,8 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "none"));
-    isMori = false;
-    document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.visibility = "visible";
+
+    easyTime();
   }
   //Hard mode. Reveals 12 cards to play with
   let hardMode = document.querySelector("#hard");
@@ -315,14 +335,33 @@
     easyCards.forEach((card) => (card.style.display = "block"));
     mediumCards.forEach((card) => (card.style.display = "block"));
     hardCards.forEach((card) => (card.style.display = "block"));
-    isMori = true;
-    document.getElementById("start").addEventListener("click", Start);
-    removeTime.style.visibility = "hidden";
+
+    hardTime();
   }
   //Adds event listener to all cards to flip
   cards.forEach((card) => {
     card.addEventListener("click", flipCard);
-    card.setAttribute("listenter", "true");
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        //temporary fix. Tried changing flipcard and it broke horrifically.
+
+        if (locked) return;
+        if (card === firstCard) return;
+
+        card.classList.add("flip");
+
+        if (!hasFlippedCard) {
+          hasFlippedCard = true;
+          firstCard = card;
+          return;
+        }
+
+        secondCard = card;
+
+        matched();
+      }
+    });
+    card.setAttribute("listener", "true");
   });
 
 })();
