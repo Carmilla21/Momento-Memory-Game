@@ -269,7 +269,7 @@
 
   //Easy mode. Reveals six cards to play with
   function easyOn() {
-    easyCards.forEach((card) => (card.style.display = "block"));
+    easyCards.forEach((card) => (card.style.display = "flex"));
     mediumCards.forEach((card) => (card.style.display = "none"));
     hardCards.forEach((card) => (card.style.display = "none"));
     isMori = false;
@@ -306,4 +306,5 @@
     card.addEventListener("click", flipCard);
     card.setAttribute("listenter", "true");
   });
+
 })();
