@@ -276,7 +276,7 @@
   //Shuffles the cards
   function shuffle() {
     cards.forEach((card) => {
-      let randomPos = Math.floor(Math.random() * 12);
+      let randomPos = Math.floor(Math.random() * 12 + 1);
       card.style.order = randomPos;
       card.tabIndex = randomPos.toString();
     });
@@ -387,7 +387,7 @@
     //if cards are gone do this(maybe do this if loop outside of the function in start)
     Pause();
 
-
+    document.getElementById("start").removeEventListener("click", Start);
     document.getElementById("endOfMori").style.display = "flex";
 
     if (isMori) {
