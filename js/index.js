@@ -8,7 +8,6 @@
   let checkBox = document.querySelector("label");
   let fader = document.querySelector(".fader");
   const heartBeat = document.getElementById("heartSlow");
-  const flatline = document.getElementById("flatline");
 
   function timeCountUp() {
     //displays timer in 0:00 format and counts up
@@ -191,6 +190,8 @@
       });
       shuffle();
       fader.style.opacity = 0;
+      heartBeat.pause();
+      heartBeat.playbackRate = 1;
       document.getElementById("endOfMori").style.display = "none";
     });
   });
@@ -363,5 +364,4 @@
     });
     card.setAttribute("listener", "true");
   });
-
 })();
