@@ -4,7 +4,7 @@
   let completeTime = 0; //this and moriTime are universal to keep time.
   let moriTime = 120;
   let isMori = false;
-  const timer = document.querySelector("#timer");
+  const timer = document.getElementById("timerText");
   let checkBox = document.querySelector("label");
   let fader = document.querySelector(".fader");
 
@@ -16,7 +16,7 @@
 
     seconds = seconds < 10 ? "0" + seconds : seconds; //sets timer structure
 
-    timer.innerText = `${minutes}:${seconds}`; //adds the above to make timer.
+    timer.textContent = `${minutes}:${seconds}`; //adds the above to make timer.
 
     completeTime++; //increments so seconds add up.
   }
@@ -29,7 +29,7 @@
 
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    timer.innerText = `${minutes}:${seconds}`;
+    timer.textContent = `${minutes}:${seconds}`;
 
     moriTime--; //increments so seconds pass.
 
@@ -54,7 +54,7 @@
     minutes = 0;
     seconds = 0;
     seconds = seconds < 10 ? "0" + seconds : seconds;
-    timer.innerText = `${minutes}:${seconds}`;
+    timer.textContent = `${minutes}:${seconds}`;
   }
 
 
@@ -67,9 +67,8 @@
     minutes = 2;
     seconds = 0;
     seconds = seconds < 10 ? "0" + seconds : seconds;
-    timer.innerText = `${minutes}:${seconds}`;
+    timer.textContent = `${minutes}:${seconds}`;
   }
-
 
   function loseTime() {
     //it's under "unFlip"=
@@ -77,17 +76,19 @@
       for (i = 0; i < 10; i++) {//loops 10 times to reduce seconds by 10 in mori mode
         timeCountDown();
       };
-    };
+    }
   };
 
+
+  const timerContainer = document.querySelector("#timer");
 
   let removeTime = document.getElementById("noTimer");
   removeTime.addEventListener("change", () => {
     //lets the timer display or not.
     if (removeTime.checked) {
-      timer.style.display = "none";
+      timerContainer.style.display = "none";
     } else {
-      timer.style.display = "flex";
+      timerContainer.style.display = "flex";
     }
   });
 
@@ -97,7 +98,7 @@
 
     difficultyOff(); //removes ability to select difficulty until restarted.
 
-    timer.style.display = "flex"; //displays timer
+    timerContainer.style.display = "flex"; //displays timer
 
     if (isMori === true) {
       //if memento mori difficulty selected counts down, otherwise countup
@@ -155,7 +156,7 @@
       difficultyOn(); //let's select difficulty happen
       document.getElementById("start").removeEventListener("click", Start);
 
-      timer.style.display = "none"; //removes timer from screen.
+      timerContainer.style.display = "none"; //removes timer from screen.
       checkBox.innerText = "Remove Timer";
       removeTime.style.visibility = "visible";
 
@@ -234,6 +235,12 @@
 
       while (isMori === true) {
         loseTime();
+        timer.classList.add("timeDilation");
+        timer.classList.remove("normalText");
+        setTimeout(() => {
+          timer.classList.add("normalText");
+          timer.classList.remove("timeDilation");
+        }, 1000);
         break;
       }
       resetCards();
@@ -345,8 +352,5 @@
     card.setAttribute("listener", "true");
   });
 
-  function win() {
-
-  };
 
 })();
