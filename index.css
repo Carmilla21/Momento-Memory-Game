@@ -17,6 +17,14 @@
   color: white;
 }
 
+.splash {
+  z-index: 200000;
+  position: absolute;
+  background-color: rgb(95, 2, 2);
+  opacity: 1;
+  width: 100%;
+}
+
 body {
   height: 100vh;
   display: flex;
@@ -209,7 +217,7 @@ body {
   text-shadow: 2px 2px 40px white;
 }
 
-#moriWin{
+#moriWin {
   display: none;
   z-index: 120000;
   font-size: 50px;
@@ -220,7 +228,7 @@ body {
   font-family: Eagle Lake;
 }
 
-#easyMediumWin{
+#easyMediumWin {
   display: none;
   z-index: 130000;
   font-size: 50px;
@@ -228,17 +236,16 @@ body {
   flex-direction: column;
   text-shadow: 2px 2px 40px white;
   color: white;
-  font-family:Eagle Lake;
+  font-family: Eagle Lake;
 }
 
 h1 {
   text-shadow: 2px 2px 4px #000000;
 }
 
-
 #endImage {
   width: 200px;
-  height:350px;
+  height: 350px;
   display: flex;
   align-self: center;
 }
@@ -314,7 +321,6 @@ h1 {
   #timebutton {
     width: calc(80% - 10px);
   }
-
 }
 
 @media (max-width: 425px) {
@@ -323,23 +329,16 @@ h1 {
   }
 
   #easyMediumWin {
-    font-size:25px;
+    font-size: 25px;
   }
-
-
 }
 
 @media (max-width: 768px) {
+  #easyMediumWin {
+    font-size: 30px;
+  }
 
-#easyMediumWin {
-  font-size: 30px;
+  #moriWin {
+    font-size: 20px;
+  }
 }
-
-#moriWin {
-  font-size: 20px
-}
-
-}
-
-
-
