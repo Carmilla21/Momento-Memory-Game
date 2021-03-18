@@ -209,6 +209,24 @@ body {
   text-shadow: 2px 2px 40px white;
 }
 
+#moriWin{
+  display: none;
+  z-index: 120000;
+  font-size: 50px;
+  margin: auto;
+  flex-direction: column;
+  text-shadow: 2px 2px 40px white;
+}
+
+#easyMediumWin{
+  display: none;
+  z-index: 130000;
+  font-size: 50px;
+  margin: auto;
+  flex-direction: column;
+  text-shadow: 2px 2px 40px white;
+}
+
 h1 {
   text-shadow: 2px 2px 4px #000000;
 }
