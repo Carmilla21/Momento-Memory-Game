@@ -226,6 +226,12 @@ h1 {
   text-shadow: 2px 2px 4px #000000;
 }
 
+#endImage {
+  width: 200px;
+  height:350px;
+  display: flex;
+  align-self: center;
+}
 
 @media (min-width: 1024px) {
 
