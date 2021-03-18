@@ -216,6 +216,8 @@ body {
   margin: auto;
   flex-direction: column;
   text-shadow: 2px 2px 40px white;
+  color: rgb(247, 255, 255);
+  font-family: Eagle Lake;
 }
 
 #easyMediumWin{
@@ -225,6 +227,8 @@ body {
   margin: auto;
   flex-direction: column;
   text-shadow: 2px 2px 40px white;
+  color: white;
+  font-family:Eagle Lake;
 }
 
 h1 {
@@ -310,10 +314,32 @@ h1 {
   #timebutton {
     width: calc(80% - 10px);
   }
+
 }
 
 @media (max-width: 425px) {
   #endOfMori {
     font-size: 30px;
   }
+
+  #easyMediumWin {
+    font-size:25px;
+  }
+
+
 }
+
+@media (max-width: 768px) {
+
+#easyMediumWin {
+  font-size: 30px;
+}
+
+#moriWin {
+  font-size: 20px
+}
+
+}
+
+
+
