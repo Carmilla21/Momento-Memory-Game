@@ -203,7 +203,6 @@
       document.getElementById('endOfMori').style.display = 'none';
       document.getElementById('easyMediumWin').style.display = 'none';
       document.getElementById('moriWin').style.display = 'none';
-
     });
   });
 
@@ -396,10 +395,14 @@
       heartBeat.playbackRate = 1;
 
       document.getElementById('moriWin').style.display = 'flex';
-      document.getElementById('moriWin').innerText = `The ninth lion ate the sun. ${flipCount} flips`;
+      document.getElementById(
+        'moriWin'
+      ).innerText = `The ninth lion ate the sun. ${flipCount} flips`;
     } else {
       document.getElementById('easyMediumWin').style.display = 'flex';
-      document.getElementById('easyMediumWin').innerText = `You Won in ${flipCount} flips`;
+      document.getElementById(
+        'easyMediumWin'
+      ).innerText = `You Won in ${flipCount} flips`;
     }
 
     // have to press reset so don't add too much
@@ -421,4 +424,11 @@
       }
     }
   }
+  const splash = document.querySelector('.splash');
+  function opensplash() {
+    setInterval(() => {
+      splash.style.display = 'none';
+    }, 3000);
+  }
+  opensplash();
 })();
